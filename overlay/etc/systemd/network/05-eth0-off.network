@@ -1,0 +1,7 @@
+# jaws has no Ethernet connector: the SoC MAC/PHY is detected but nothing is wired to it.
+# Keep eth0 down so networkd does not wait on it or try DHCP. Sorts before 10-eth0.network.
+[Match]
+Name=eth0
+
+[Link]
+ActivationPolicy=always-down

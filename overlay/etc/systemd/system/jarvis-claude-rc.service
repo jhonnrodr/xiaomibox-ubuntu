@@ -1,0 +1,17 @@
+[Unit]
+Description=Claude Code Remote Control in /root/jarvis (tmux session "claude-rc")
+Wants=network-online.target
+After=network-online.target jarvis-wifi-power.service
+
+[Service]
+Type=forking
+User=root
+WorkingDirectory=/root/jarvis
+Environment=HOME=/root
+ExecStart=/usr/bin/tmux new-session -d -s claude-rc /usr/local/bin/claude remote-control --name jarvis
+ExecStop=/usr/bin/tmux kill-session -t claude-rc
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

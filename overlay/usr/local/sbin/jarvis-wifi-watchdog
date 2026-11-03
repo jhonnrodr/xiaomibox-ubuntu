@@ -1,0 +1,88 @@
+#!/bin/bash
+# Runs every minute (timer). Keeps WiFi power save off and checks the link two ways:
+#   1. ICMP ping to the default gateway
+#   2. a real TCP exchange (HTTP request to TCP_PROBE_HOST, response must start with "HTTP/")
+# The MT7663 can fail so that pings still pass but TCP data from the box is lost (verified
+# 2026-11-02: sshd logged "Connection closed [preauth]" while the client never got the banner),
+# so ping alone is not enough. On failure: restart wpa_supplicant, then power-cycle the chip.
+set -u
+readonly IFACE="wlan0"
+readonly PING_COUNT=3
+readonly SETTLE_S=20
+
+iw dev "${IFACE}" set power_save off 2>/dev/null
+
+# avahi renames itself to <host>-2 when it hears its own announcement after the interface is
+# re-added (verified 2026-11-02 01:22:16: "Host name conflict, retrying with jarvis-2" during a
+# WiFi power cycle), which breaks jarvis.local. Reclaim the name by restarting avahi.
+avahi_fqdn() {
+  busctl --system call org.freedesktop.Avahi / org.freedesktop.Avahi.Server GetHostNameFqdn 2>/dev/null \
+    | awk '{gsub(/"/, "", $2); print $2}'
+}
+if systemctl -q is-active avahi-daemon; then
+  fqdn="$(avahi_fqdn)"
+  if [[ -n "${fqdn}" && "${fqdn}" != "$(hostname).local" ]]; then
+    echo "avahi name is ${fqdn}, expected $(hostname).local: restarting avahi-daemon"
+    systemctl restart avahi-daemon
+  fi
+fi
+
+gateway() { ip route show default dev "${IFACE}" 2>/dev/null | awk '/default/ {print $3; exit}'; }
+readonly TCP_PROBE_HOST="1.1.1.1"
+readonly TCP_PROBE_PATH="/cdn-cgi/trace"
+readonly TCP_TIMEOUT_S=10
+readonly TCP_TRIES=2
+
+ping_ok() { local gw; gw="$(gateway)"; [[ -n "${gw}" ]] && ping -c "${PING_COUNT}" -W 2 -I "${IFACE}" "${gw}" >/dev/null 2>&1; }
+tcp_once() {
+  timeout "${TCP_TIMEOUT_S}" bash -c '
+    exec 3<>"/dev/tcp/$1/80" || exit 1
+    printf "GET %s HTTP/1.0\r\nHost: %s\r\n\r\n" "$2" "$1" >&3
+    head -c 5 <&3 | grep -q "^HTTP/"' _ "${TCP_PROBE_HOST}" "${TCP_PROBE_PATH}"
+}
+tcp_ok() { local i; for i in $(seq 1 "${TCP_TRIES}"); do tcp_once && return 0; sleep 2; done; return 1; }
+# WMM access categories by IP TOS: BE=0x00, BK=0x20 (CS1), VI=0x80 (CS4), VO=0xc0 (CS6).
+# Hypothesis (2026-11-02, unverified): the MT7663 can hang a single TX queue. Pings and the TCP
+# probe (TOS 0 -> BE) then pass while DSCP-marked traffic such as SSH is lost, which matches an
+# outage where the box's own checks passed but the Mac could not get the SSH banner.
+readonly AC_TOS=(0x00 0x20 0x80 0xc0)
+readonly AC_NAME=(BE BK VI VO)
+ac_failed() {
+  local gw i out=""; gw="$(gateway)"; [[ -n "${gw}" ]] || { echo "no-gateway"; return; }
+  for i in "${!AC_TOS[@]}"; do
+    ping -c 2 -W 2 -Q "${AC_TOS[i]}" -I "${IFACE}" "${gw}" >/dev/null 2>&1 || out+="${AC_NAME[i]} "
+  done
+  echo -n "${out}"
+}
+# VO-only hangs are logged but not acted on: nftables (/etc/nftables.conf) clears DSCP on all
+# non-ICMP wlan0 traffic, so nothing but the VO ping probe uses that queue, and a power cycle costs
+# ~1 min of downtime. Verified 2026-11-02: VO hangs recur every few minutes.
+LAST_FAILED_AC=""
+gw_ok() {
+  LAST_FAILED_AC="$(ac_failed)"
+  local actionable="${LAST_FAILED_AC//VO /}"
+  if [[ -n "${LAST_FAILED_AC}" && -z "${actionable// /}" ]]; then
+    echo "vo hang (ignored, traffic steered to BE)"
+  fi
+  [[ -z "${actionable// /}" ]] && tcp_ok
+}
+
+gw_ok && exit 0
+
+echo "link check failed (failed_ac=[${LAST_FAILED_AC}] tcp_ok=$(tcp_ok && echo yes || echo no)): $(iw dev "${IFACE}" link 2>&1 | head -3 | tr '\n' ' ')"
+echo "step 1: restart wpa_supplicant@${IFACE}"
+systemctl restart "wpa_supplicant@${IFACE}.service"
+sleep "${SETTLE_S}"
+gw_ok && { echo "recovered after wpa restart"; exit 0; }
+
+echo "step 2: power-cycle the chip"
+systemctl stop "wpa_supplicant@${IFACE}.service"
+systemctl restart jarvis-wifi-power.service
+sleep 15
+ip link set "${IFACE}" up
+iw dev "${IFACE}" set power_save off 2>/dev/null
+systemctl start "wpa_supplicant@${IFACE}.service"
+sleep "${SETTLE_S}"
+gw_ok && { echo "recovered after power cycle"; exit 0; }
+echo "still down after power cycle" >&2
+exit 1

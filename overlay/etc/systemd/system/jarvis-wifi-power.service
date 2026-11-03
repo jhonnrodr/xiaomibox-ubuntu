@@ -1,0 +1,13 @@
+[Unit]
+Description=Power-cycle and hold power on the MT7663 WiFi chip (GPIOX_6)
+After=systemd-udevd.service
+Before=jarvis-wifi-retry.service
+
+[Service]
+Type=simple
+ExecStart=/usr/local/sbin/jarvis-wifi-power
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

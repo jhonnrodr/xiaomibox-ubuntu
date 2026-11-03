@@ -1,0 +1,7 @@
+[Unit]
+Description=Check WiFi gateway reachability and recover wlan0
+After=jarvis-wifi-retry.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/jarvis-wifi-watchdog

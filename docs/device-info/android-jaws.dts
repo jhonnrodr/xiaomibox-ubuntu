@@ -1,0 +1,1645 @@
+/dts-v1/;
+
+/ {
+
+	vpu_security {
+	};
+
+	adc_keypad {
+	};
+
+	soc_info {
+	};
+
+	ion_dev {
+	};
+
+	reserved-memory {
+
+		linux,secmon {
+		};
+
+		linux,ppmgr {
+		};
+
+		linux,ion-fb {
+		};
+
+		linux,ion-dev {
+		};
+
+		linux,vdin0_cma {
+		};
+
+		linux,vdin1_cma {
+		};
+
+		linux,dsp_fw {
+		};
+
+		linux,meson-fb {
+		};
+
+		linux,codec_mm_reserved {
+		};
+
+		linux,codec_mm_cma {
+		};
+
+		ramoops@0x07400000 {
+		};
+	};
+
+	efusecheck {
+
+		check_1 {
+		};
+
+		check_2 {
+		};
+
+		check_0 {
+		};
+	};
+
+	vclk_serve {
+	};
+
+	dummy-battery {
+	};
+
+	vcodec_dec {
+	};
+
+	meson_videotunnel {
+	};
+
+	drm-amhdmitx {
+
+		ports {
+
+			port {
+
+				endpoint@0 {
+				};
+			};
+		};
+	};
+
+	aocec {
+	};
+
+	rdma {
+	};
+
+	auge_sound {
+
+		aml-audio-card,dai-link@0 {
+
+			cpu {
+			};
+
+			codec {
+			};
+		};
+
+		aml-audio-card,dai-link@1 {
+
+			cpu {
+			};
+
+			codec {
+			};
+		};
+
+		aml-audio-card,dai-link@2 {
+
+			cpu {
+			};
+
+			codec {
+			};
+		};
+
+		aml-audio-card,dai-link@4 {
+
+			cpu {
+			};
+
+			codec {
+			};
+		};
+
+		aml-audio-card,dai-link@3 {
+
+			cpu {
+			};
+
+			codec {
+			};
+		};
+	};
+
+	cpus {
+
+		cpu@1 {
+		};
+
+		cpu@2 {
+		};
+
+		cpu@3 {
+		};
+
+		cpu@0 {
+		};
+
+		idle-states {
+
+			cpu-sleep-0 {
+			};
+
+			system-sleep-0 {
+			};
+		};
+	};
+
+	pm {
+	};
+
+	provisionkey {
+
+		KEY_PROVISION_XXX {
+		};
+	};
+
+	wifi_pwm_conf {
+
+		pwm_channel2_conf {
+		};
+
+		pwm_channel1_conf {
+		};
+	};
+
+	cma_shrinker {
+	};
+
+	drm-amcvbsout {
+
+		ports {
+
+			port {
+
+				endpoint@0 {
+				};
+			};
+		};
+	};
+
+	thermal-zones {
+
+		soc_thermal {
+
+			trips {
+
+				trip-point@1 {
+				};
+
+				trip-point@2 {
+				};
+
+				trip-point@0 {
+				};
+			};
+
+			cooling-maps {
+
+				cpufreq_cooling_map {
+				};
+
+				gpufreq_cooling_map {
+				};
+			};
+		};
+
+		ddr_thermal {
+
+			trips {
+
+				trip-point@1 {
+				};
+
+				trip-point@2 {
+				};
+
+				trip-point@0 {
+				};
+			};
+		};
+	};
+
+	firmware {
+
+		android {
+		};
+	};
+
+	amdolby_vision {
+	};
+
+	jtag {
+	};
+
+	dummy_venc {
+	};
+
+	ddr_bandwidth {
+	};
+
+	aml_mkl {
+	};
+
+	bifrost {
+
+		dvfs800_cfg {
+		};
+
+		dvfs500_cfg {
+		};
+
+		dvfs666_cfg {
+		};
+
+		clk125_cfg {
+		};
+
+		dvfs250_cfg {
+		};
+
+		dvfs285_cfg {
+		};
+
+		dvfs850_cfg {
+		};
+
+		dvfs400_cfg {
+		};
+	};
+
+	mesonstream {
+	};
+
+	partitions {
+
+		dtbo_a {
+		};
+
+		super {
+		};
+
+		odm_ext_b {
+		};
+
+		boot_b {
+		};
+
+		vbmeta_a {
+		};
+
+		factorydata {
+		};
+
+		dtbo_b {
+		};
+
+		odm_ext_a {
+		};
+
+		tee {
+		};
+
+		vbmeta_system_a {
+		};
+
+		boot_a {
+		};
+
+		logo {
+		};
+
+		misc {
+		};
+
+		vendor_boot_b {
+		};
+
+		rsv {
+		};
+
+		metadata {
+		};
+
+		oem_a {
+		};
+
+		vbmeta_b {
+		};
+
+		factory {
+		};
+
+		vbmeta_system_b {
+		};
+
+		vendor_boot_a {
+		};
+
+		cri_data {
+		};
+
+		oem_b {
+		};
+
+		param {
+		};
+
+		frp {
+		};
+
+		userdata {
+		};
+	};
+
+	dolby_fw {
+	};
+
+	aml_dma {
+
+		aml_tdes {
+		};
+
+		aml_aes {
+		};
+
+		aml_sha {
+		};
+
+		crypto {
+		};
+	};
+
+	aml_wifi {
+	};
+
+	meson-cooldev@0 {
+
+		cooling_devices {
+
+			cpucore_cool_cluster0 {
+			};
+
+			gpufreq_cool {
+			};
+		};
+
+		cpucore_cool0 {
+		};
+	};
+
+	rng {
+	};
+
+	multi-di {
+	};
+
+	vpu {
+	};
+
+	amlvecm {
+	};
+
+	meson-irblaster@fe08410c {
+	};
+
+	canvas {
+	};
+
+	aml_bt {
+	};
+
+	vdac {
+	};
+
+	cvbsout {
+	};
+
+	aml_reboot {
+	};
+
+	vdec {
+	};
+
+	chosen {
+	};
+
+	picdec {
+	};
+
+	amaudio {
+	};
+
+	interrupt-controller@fff01000 {
+	};
+
+	secmon {
+	};
+
+	amvenc_avc {
+	};
+
+	amlvideo2_0 {
+	};
+
+	rtc@0xfe010288 {
+	};
+
+	ddr-scrambler@0xfe02e030 {
+	};
+
+	vout {
+	};
+
+	pwmleds {
+
+		SYS_LED {
+		};
+	};
+
+	p_tsensor@fe020000 {
+	};
+
+	efusekey {
+
+		key_2 {
+		};
+
+		key_1 {
+		};
+
+		key_3 {
+		};
+
+		key_0 {
+		};
+	};
+
+	meson-amvideom {
+	};
+
+	jpegenc {
+	};
+
+	drm-subsystem {
+
+		vpu_hw_para@0 {
+		};
+
+		vpu_topology {
+
+			vpu_blocks {
+
+				block@4 {
+				};
+
+				block@7 {
+				};
+
+				block@3 {
+				};
+
+				block@14 {
+				};
+
+				block@9 {
+				};
+
+				block@1 {
+				};
+
+				block@12 {
+				};
+
+				block@8 {
+				};
+
+				block@13 {
+				};
+
+				block@5 {
+				};
+
+				block@10 {
+				};
+
+				block@2 {
+				};
+
+				block@6 {
+				};
+
+				block@0 {
+				};
+			};
+		};
+	};
+
+	video_composer {
+	};
+
+	ir@8000 {
+	};
+
+	meson_uvm {
+	};
+
+	codec_io {
+	};
+
+	amhdmitx {
+
+		vend_data {
+		};
+	};
+
+	drm-vpu@0xff900000 {
+
+		port {
+
+			endpoint@0 {
+			};
+
+			endpoint@2 {
+			};
+
+			endpoint@1 {
+			};
+		};
+	};
+
+	psci {
+	};
+
+	power-domains {
+	};
+
+	cpu_opp_table0 {
+
+		opp00 {
+		};
+
+		opp07 {
+		};
+
+		opp04 {
+		};
+
+		opp06 {
+		};
+
+		opp11 {
+		};
+
+		opp03 {
+		};
+
+		opp02 {
+		};
+
+		opp12 {
+		};
+
+		opp08 {
+		};
+
+		opp10 {
+		};
+
+		opp09 {
+		};
+
+		opp01 {
+		};
+
+		opp05 {
+		};
+	};
+
+	wlpm_dev {
+	};
+
+	efuse {
+	};
+
+	dvb-demux {
+	};
+
+	cpufreq-meson {
+	};
+
+	ionvideo {
+	};
+
+	custom_maps {
+
+		map_1 {
+		};
+
+		map_0 {
+		};
+	};
+
+	cpu_info {
+	};
+
+	unifykey {
+
+		key_16 {
+		};
+
+		key_11 {
+		};
+
+		key_2 {
+		};
+
+		key_10 {
+		};
+
+		key_1 {
+		};
+
+		key_6 {
+		};
+
+		key_14 {
+		};
+
+		key_12 {
+		};
+
+		key_7 {
+		};
+
+		key_3 {
+		};
+
+		key_9 {
+		};
+
+		key_4 {
+		};
+
+		key_18 {
+		};
+
+		key_5 {
+		};
+
+		key_0 {
+		};
+
+		key_13 {
+		};
+
+		key_17 {
+		};
+
+		key_8 {
+		};
+
+		key_15 {
+		};
+	};
+
+	vdin0 {
+	};
+
+	d_tsensor@fe022000 {
+	};
+
+	aliases {
+	};
+
+	arm_pmu {
+	};
+
+	dummy-charger {
+	};
+
+	timer {
+	};
+
+	vdin1 {
+	};
+
+	pwm_j-regulator {
+	};
+
+	dmc_monitor {
+	};
+
+	fb {
+	};
+
+	memory@00000000 {
+	};
+
+	saradc@fe026000 {
+	};
+
+	hevc_enc {
+
+		io_reg_base {
+		};
+	};
+
+	xtal-clk {
+	};
+
+	locker {
+	};
+
+	ppmgr {
+	};
+
+	soc {
+
+		dummy {
+		};
+
+		usb@fde00000 {
+
+			dwc3@fde00000 {
+			};
+		};
+
+		serial@fe07c000 {
+		};
+
+		audiobus@0xFE330000 {
+
+			spdif@1 {
+			};
+
+			effect {
+			};
+
+			ddr_manager {
+			};
+
+			tdm@0 {
+			};
+
+			tdm@1 {
+			};
+
+			resample@0 {
+			};
+
+			spdif@0 {
+			};
+
+			loopback@0 {
+			};
+
+			tdm@2 {
+			};
+
+			pdm {
+			};
+
+			loopback@1 {
+			};
+
+			pinctrl {
+
+				tdm_clk_pin {
+
+					mux {
+					};
+				};
+
+				tdm_d4_pin {
+
+					mux {
+					};
+				};
+
+				tdm_d3_pin {
+
+					mux {
+					};
+				};
+			};
+
+			audio_clocks {
+			};
+
+			vad {
+			};
+		};
+
+		serial@fe078000 {
+		};
+
+		usb2phy@fe03a000 {
+		};
+
+		nfc@fe08c800 {
+		};
+
+		bus@fe333000 {
+
+			earc@0 {
+			};
+		};
+
+		pcie@f5000000 {
+		};
+
+		serial@fe080000 {
+		};
+
+		apb4@fe000000 {
+
+			pwm@5c000 {
+			};
+
+			mdio-multiplexer@28000 {
+
+				mdio@1 {
+
+					ethernet_phy@8 {
+					};
+				};
+
+				mdio@0 {
+				};
+			};
+
+			i2c@66000 {
+			};
+
+			interrupt-controller@4080 {
+			};
+
+			spi@52000 {
+			};
+
+			pwm@58000 {
+			};
+
+			cpu_version {
+			};
+
+			i2c@6c000 {
+			};
+
+			meson_clk_msr@48000 {
+			};
+
+			pinctrl@4000 {
+
+				i2c0_pins4 {
+
+					mux {
+					};
+				};
+
+				i2c2_pins1 {
+
+					mux {
+					};
+				};
+
+				sdio_clk_gate_pins {
+
+					mux {
+					};
+				};
+
+				sd_clr_all_pins {
+
+					mux1 {
+					};
+
+					mux {
+					};
+				};
+
+				tdmout_b {
+
+					mux {
+					};
+				};
+
+				pwm_c_pins1 {
+
+					mux {
+					};
+				};
+
+				pwm_b_pins4 {
+
+					mux {
+					};
+				};
+
+				spdifin {
+
+					mux {
+					};
+				};
+
+				pwm_a_pins2 {
+
+					mux {
+					};
+				};
+
+				d_uart1 {
+
+					mux {
+					};
+				};
+
+				sd_to_ao_uart_clr_pins {
+
+					mux {
+					};
+				};
+
+				ao_uart_pins {
+
+					mux {
+					};
+				};
+
+				ee_cecb {
+
+					mux {
+					};
+				};
+
+				tdmc_mclk {
+
+					mux {
+					};
+				};
+
+				irblaster_pin1 {
+
+					mux {
+					};
+				};
+
+				tdm_a {
+
+					mux {
+					};
+				};
+
+				dvb_s_ts3_pins {
+
+					tsin_d {
+					};
+				};
+
+				pwm_i_pins1 {
+
+					mux {
+					};
+				};
+
+				pwm_b_pins3 {
+
+					mux {
+					};
+				};
+
+				dvb_s_ts1_pins {
+
+					tsin_b {
+					};
+				};
+
+				jtag_b_pin {
+
+					mux {
+					};
+				};
+
+				i2c3_pins1 {
+
+					mux {
+					};
+				};
+
+				all_nand_pins {
+
+					mux {
+					};
+				};
+
+				spdifout_a_mute {
+
+					mux {
+					};
+				};
+
+				sd_1bit_pins {
+
+					mux {
+					};
+				};
+
+				emmc {
+
+					mux-1 {
+					};
+
+					mux-0 {
+					};
+				};
+
+				hdmitx_hpd {
+
+					mux {
+					};
+				};
+
+				pwm_j_pins2 {
+
+					mux {
+					};
+				};
+
+				spicc0_pins_x {
+
+					mux {
+					};
+				};
+
+				sd_clr_noall_pins {
+
+					mux {
+					};
+				};
+
+				hdmitx_hpd_gpio {
+
+					mux {
+					};
+				};
+
+				pwm_d_pins1 {
+
+					mux {
+					};
+				};
+
+				bank@4000 {
+				};
+
+				emmc_clk_gate {
+
+					mux {
+					};
+				};
+
+				spifc_pins {
+
+					mux {
+					};
+				};
+
+				i2c1_pins1 {
+
+					mux {
+					};
+				};
+
+				pwm_c_pins2 {
+
+					mux {
+					};
+				};
+
+				i2c0_pins1 {
+
+					mux {
+					};
+				};
+
+				pwm_g_hiz_pins {
+
+					mux {
+					};
+				};
+
+				pwm_c_pins3 {
+
+					mux {
+					};
+				};
+
+				pwm_a_pins1 {
+
+					mux {
+					};
+				};
+
+				pwm_b_pins1 {
+
+					mux {
+					};
+				};
+
+				pwm_h_pins {
+
+					mux {
+					};
+				};
+
+				pwm_i_hiz_pins {
+
+					mux {
+					};
+				};
+
+				spicc0_pins_c {
+
+					mux {
+					};
+				};
+
+				dvb_s_ts2_pins {
+
+					tsin_c {
+					};
+				};
+
+				tdmout_c {
+
+					mux {
+					};
+				};
+
+				pwm_j_pins1 {
+
+					mux {
+					};
+				};
+
+				pwm_d_pins2 {
+
+					mux {
+					};
+				};
+
+				nand_cs {
+
+					mux {
+					};
+				};
+
+				tdmb_mclk {
+
+					mux {
+					};
+				};
+
+				i2c0_pins3 {
+
+					mux {
+					};
+				};
+
+				i2c2_pins3 {
+
+					mux {
+					};
+				};
+
+				sdcard_pins {
+
+					mux {
+					};
+				};
+
+				pwm_e_pins {
+
+					mux {
+					};
+				};
+
+				emmc-ds {
+
+					mux {
+					};
+				};
+
+				i2c1_pins3 {
+
+					mux {
+					};
+				};
+
+				pwm_f_pins3 {
+
+					mux {
+					};
+				};
+
+				spicc1_pins_h {
+
+					mux {
+					};
+				};
+
+				c_uart {
+
+					mux {
+					};
+				};
+
+				hdmitx_ddc {
+
+					mux {
+					};
+				};
+
+				pwm_f_pins1 {
+
+					mux {
+					};
+				};
+
+				i2c1_pins4 {
+
+					mux {
+					};
+				};
+
+				tdmin_a {
+
+					mux {
+					};
+				};
+
+				jtag_a_pin {
+
+					mux {
+					};
+				};
+
+				i2c4_pins1 {
+
+					mux {
+					};
+				};
+
+				irblaster_pin4 {
+
+					mux {
+					};
+				};
+
+				irblaster_pin2 {
+
+					mux {
+					};
+				};
+
+				pwm_j_pins3 {
+
+					mux {
+					};
+				};
+
+				i2c3_pins2 {
+
+					mux {
+					};
+				};
+
+				i2c1_pins2 {
+
+					mux {
+					};
+				};
+
+				pwm_f_pins2 {
+
+					mux {
+					};
+				};
+
+				i2c0_pins2 {
+
+					mux {
+					};
+				};
+
+				e_uart {
+
+					mux {
+					};
+				};
+
+				pwm_b_pins2 {
+
+					mux {
+					};
+				};
+
+				irblaster_pin3 {
+
+					mux {
+					};
+				};
+
+				pwm_b_pins5 {
+
+					mux {
+					};
+				};
+
+				sdio_clk_gate {
+
+					mux {
+					};
+				};
+
+				sdio {
+
+					mux {
+					};
+				};
+
+				pwm_i_pins2 {
+
+					mux {
+					};
+				};
+
+				ao_to_sd_uart_pins {
+
+					mux {
+					};
+				};
+
+				i2c2_pins2 {
+
+					mux {
+					};
+				};
+
+				pdmin {
+
+					mux {
+					};
+				};
+
+				a_uart1 {
+
+					mux {
+					};
+				};
+
+				i2c4_pins2 {
+
+					mux {
+					};
+				};
+
+				pwm_g_pins {
+
+					mux {
+					};
+				};
+
+				remote_pin {
+
+					mux {
+					};
+				};
+
+				a_uart2 {
+
+					mux {
+					};
+				};
+
+				dvb_s_ts0_pins {
+
+					tsin_a {
+					};
+				};
+
+				tdmin_b {
+
+					mux {
+					};
+				};
+
+				d_uart2 {
+
+					mux {
+					};
+				};
+
+				pwm_d_pins3 {
+
+					mux {
+					};
+				};
+
+				tdmin_c {
+
+					mux {
+					};
+				};
+
+				ee_ceca {
+
+					mux {
+					};
+				};
+
+				spdifout {
+
+					mux {
+					};
+				};
+			};
+
+			spi@56000 {
+
+				spi-nand@0 {
+
+					spinand_partitions {
+
+						tpl {
+						};
+
+						system {
+						};
+
+						logo {
+						};
+
+						bootloader {
+						};
+
+						boot {
+						};
+
+						recovery {
+						};
+
+						data {
+						};
+					};
+				};
+			};
+
+			watchdog@2100 {
+			};
+
+			pwm@5a000 {
+			};
+
+			reset-controller@2000 {
+			};
+
+			serial@7a000 {
+			};
+
+			i2c@6e000 {
+			};
+
+			pwm@5e000 {
+			};
+
+			spi@50000 {
+			};
+
+			i2c@6a000 {
+			};
+
+			i2c@68000 {
+			};
+
+			pwm@60000 {
+			};
+
+			clock-controller {
+			};
+		};
+
+		sd@fe08a000 {
+		};
+
+		usb3phy@fe03a080 {
+		};
+
+		aml_snd_iomap {
+
+			eqdrc_base {
+			};
+
+			audiobus_base {
+			};
+
+			audiolocker_base {
+			};
+
+			vad_base {
+			};
+
+			resampleA_base {
+			};
+
+			resampleB_base {
+			};
+
+			pdm_bus {
+			};
+		};
+
+		sdio@fe088000 {
+		};
+
+		ethernet@fdc00000 {
+
+			mdio {
+			};
+		};
+
+		dwc2_a@fdd00000 {
+		};
+
+		serial@fe07e000 {
+		};
+
+		mmc@fe08c000 {
+		};
+
+		t9015 {
+		};
+	};
+
+	hifi4dsp {
+	};
+
+	audio_data {
+	};
+
+	ge2d {
+	};
+
+	mhu@0 {
+	};
+
+	amlvideo2_1 {
+	};
+
+	efuse_burn {
+	};
+
+	codec_mm {
+	};
+
+	dvb-extern {
+	};
+
+	timer_bc {
+	};
+
+	lut_dma {
+	};
+
+	drm-lcd {
+
+		ports {
+
+			port {
+
+				endpoint@0 {
+				};
+			};
+		};
+	};
+};

@@ -1,0 +1,12 @@
+[Unit]
+Description=Power-cycle MT7663 until wlan0 comes up
+After=systemd-networkd.service jarvis-wifi-power.service
+Before=jarvis-diag.service
+
+[Service]
+Type=oneshot
+ExecStartPre=/bin/sleep 25
+ExecStart=/usr/local/sbin/jarvis-wifi-retry
+
+[Install]
+WantedBy=multi-user.target

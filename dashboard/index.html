@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jarvis</title>
+<style>
+  :root { --bg:#0f1115; --card:#181b22; --fg:#e6e8ee; --muted:#8a90a0; --ok:#3ecf8e; --bad:#ff5d5d; --warn:#f5b748; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:15px/1.45 system-ui,-apple-system,sans-serif; }
+  header { padding:16px; display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; }
+  h1 { margin:0; font-size:22px; }
+  #stamp { color:var(--muted); font-size:13px; }
+  main { display:grid; gap:12px; padding:0 16px 24px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
+  .card { background:var(--card); border-radius:12px; padding:14px; }
+  .card h2 { margin:0 0 8px; font-size:13px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); }
+  .big { font-size:26px; font-weight:600; }
+  .row { display:flex; justify-content:space-between; gap:8px; padding:2px 0; }
+  .muted { color:var(--muted); }
+  .ok { color:var(--ok); } .bad { color:var(--bad); } .warn { color:var(--warn); }
+  .dot { display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:6px; }
+  ul { margin:0; padding-left:0; list-style:none; font:12px/1.5 ui-monospace,monospace; max-height:220px; overflow:auto; }
+  .wide { grid-column:1/-1; }
+</style>
+</head>
+<body>
+<header><h1 id="title">Jarvis</h1><span id="stamp">loading…</span></header>
+<main>
+  <section class="card"><h2>Status</h2><div id="alive" class="big">…</div><div id="uptime" class="muted"></div></section>
+  <section class="card"><h2>WiFi</h2><div id="wifi"></div></section>
+  <section class="card"><h2>Resources</h2><div id="res"></div></section>
+  <section class="card"><h2>Services</h2><div id="svc"></div></section>
+  <section class="card wide"><h2>WiFi watchdog (this boot)</h2><div id="wdsum"></div><ul id="wd"></ul></section>
+</main>
+<script>
+const POLL_MS = 10000;
+const $ = (id) => document.getElementById(id);
+const row = (k, v, cls = "") => {
+  const d = document.createElement("div"); d.className = "row";
+  const a = document.createElement("span"); a.className = "muted"; a.textContent = k;
+  const b = document.createElement("span"); b.className = cls; b.textContent = v;
+  d.append(a, b); return d;
+};
+const fmtUptime = (s) => { const d = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60); return `${d ? d + "d " : ""}${h}h ${m}m`; };
+const fill = (id, nodes) => $(id).replaceChildren(...nodes);
+
+async function tick() {
+  try {
+    const r = await fetch("/api/status", { cache: "no-store" });
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    const s = await r.json();
+    $("title").textContent = s.host;
+    $("alive").textContent = "Alive"; $("alive").className = "big ok";
+    $("uptime").textContent = `up ${fmtUptime(s.uptimeS)} · load ${s.load.join(" / ")}`;
+    const w = s.wifi;
+    fill("wifi", [
+      row("Link", w.connected ? "connected" : "disconnected", w.connected ? "ok" : "bad"),
+      row("Network", w.ssid ?? "—"), row("IP", w.ipv4 ?? "—"),
+      row("Signal", w.signalDbm ? `${w.signalDbm} dBm` : "—"), row("Frequency", w.freqMHz ? `${w.freqMHz} MHz` : "—"),
+      row("TX rate", w.txBitrate ?? "—"),
+    ]);
+    const m = s.mem, t = s.temps.map((z) => `${z.c} °C`).join(" / ") || "—";
+    fill("res", [
+      row("RAM available", `${m.availableMiB} / ${m.totalMiB} MiB`),
+      row("Swap (zram) free", `${m.swapFreeMiB} / ${m.swapTotalMiB} MiB`),
+      row("Disk free", s.disk.freeGiB != null ? `${s.disk.freeGiB} / ${s.disk.totalGiB} GiB` : "—"),
+      row("Temperature", t), row("Claude Code", s.claudeVersion ?? "not found", s.claudeVersion ? "" : "warn"),
+    ]);
+    fill("svc", s.services.map((x) => row(x.name, x.state, x.state === "active" ? "ok" : "bad")));
+    const wd = s.watchdog;
+    $("wdsum").textContent = `${wd.failuresThisBoot} failures that restarted WiFi · ${wd.voHangsIgnored ?? 0} VO-queue hangs ignored (harmless)`;
+    $("wdsum").className = wd.failuresThisBoot ? "warn" : "ok";
+    fill("wd", wd.recent.length ? wd.recent.map((l) => { const li = document.createElement("li"); li.textContent = l; return li; })
+                                : [Object.assign(document.createElement("li"), { textContent: "no events", className: "muted" })]);
+    $("stamp").textContent = `updated ${new Date().toLocaleTimeString()}`;
+  } catch (e) {
+    $("alive").textContent = "No response"; $("alive").className = "big bad";
+    $("stamp").textContent = `error: ${e.message}`;
+  }
+}
+tick(); setInterval(tick, POLL_MS);
+</script>
+</body>
+</html>

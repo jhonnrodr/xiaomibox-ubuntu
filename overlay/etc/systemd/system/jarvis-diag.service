@@ -1,0 +1,9 @@
+[Unit]
+Description=Write network diagnostics to /boot/diag
+After=network.target wpa_supplicant@wlan0.service
+RequiresMountsFor=/boot
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/jarvis-diag
+

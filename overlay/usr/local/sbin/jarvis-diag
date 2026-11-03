@@ -1,0 +1,32 @@
+#!/bin/bash
+# Writes network/WiFi diagnostics to the FAT BOOT partition (/boot) so they can be read
+# from a Mac when the box has no network and no keyboard. Runs once per boot.
+set -u
+readonly OUT_DIR="/boot/diag"
+readonly OUT="${OUT_DIR}/boot$(journalctl --list-boots --no-pager 2>/dev/null | wc -l)-up$(awk '{printf "%05d", $1}' /proc/uptime)s.txt"
+readonly KEEP_FILES=30
+mkdir -p "${OUT_DIR}"
+
+section() { printf '\n===== %s =====\n' "$1"; }
+{
+  section "uname";            uname -a
+  section "uptime";           uptime
+  section "ip addr";          ip addr
+  section "ip route";         ip route
+  section "iw dev";           iw dev 2>&1; iw dev wlan0 link 2>&1; iw dev wlan0 get power_save 2>&1
+  section "rfkill";           cat /sys/class/rfkill/*/{name,state} 2>&1
+  section "usb devices";      for d in /sys/bus/usb/devices/*; do [ -f "$d/idVendor" ] && echo "$d $(cat "$d/idVendor"):$(cat "$d/idProduct") $(cat "$d/product" 2>/dev/null) driver=$(basename "$(readlink -f "$d"/*:1.0/driver 2>/dev/null)" 2>/dev/null)"; done
+  section "modules mt76";     lsmod 2>/dev/null | grep -i mt7 || grep -i mt7 /proc/modules
+  section "gpio (debugfs)";   mount -t debugfs none /sys/kernel/debug 2>/dev/null; cat /sys/kernel/debug/gpio 2>&1
+  section "firmware files";   ls -l /lib/firmware/mediatek/
+  section "dmesg wifi/usb";   dmesg | grep -iE 'mt76|mt7663|firmware|wlan|usb|cfg80211|regulatory|ieee80211'
+  section "wifi watchdog";    journalctl -b --no-pager -u jarvis-wifi-watchdog 2>&1 | grep -v -E "Starting|Finished|Deactivated" | tail -40
+  section "wifi power";       journalctl -b --no-pager -u jarvis-wifi-power 2>&1 | tail -20; gpioinfo 2>&1 | grep -E "line +56:"
+  section "wifi retry";       journalctl -b --no-pager -u jarvis-wifi-retry 2>&1 | tail -30
+  section "wpa_supplicant";   systemctl status --no-pager 'wpa_supplicant@wlan0' 2>&1; journalctl -b --no-pager -u 'wpa_supplicant@wlan0' 2>&1 | tail -60
+  section "networkd";         networkctl 2>&1; journalctl -b --no-pager -u systemd-networkd 2>&1 | tail -40
+  section "failed units";     systemctl --failed --no-pager
+  section "dmesg tail";       dmesg | tail -150
+} > "${OUT}" 2>&1
+ls -1t "${OUT_DIR}"/*.txt 2>/dev/null | tail -n +$((KEEP_FILES + 1)) | xargs -r rm -f
+sync

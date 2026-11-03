@@ -1,0 +1,182 @@
+
+===== props =====
+ro.product.model=MiTV-AFKR0
+ro.product.device=jaws
+ro.product.board=jaws
+ro.board.platform=sc2
+ro.build.fingerprint=Xiaomi/jaws/jaws:11/RTT0.211222.001/683:user/release-keys
+ro.build.version.release=11
+ro.product.cpu.abilist=armeabi-v7a,armeabi
+ro.boot.flash.locked=
+ro.boot.verifiedbootstate=green
+ro.boot.vbmeta.device_state=locked
+ro.hardware=amlogic
+ro.soc.model=
+
+===== device-tree model =====
+cat: /proc/device-tree/model: Permission denied
+
+
+===== cpuinfo =====
+processor	: 0
+model name	: ARMv8 Processor rev 0 (v8l)
+BogoMIPS	: 48.00
+Features	: half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt lpae evtstrm aes pmull sha1 sha2 crc32
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x2
+CPU part	: 0xd05
+CPU revision	: 0
+
+processor	: 1
+model name	: ARMv8 Processor rev 0 (v8l)
+BogoMIPS	: 48.00
+Features	: half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt lpae evtstrm aes pmull sha1 sha2 crc32
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x2
+CPU part	: 0xd05
+CPU revision	: 0
+
+processor	: 2
+model name	: ARMv8 Processor rev 0 (v8l)
+BogoMIPS	: 48.00
+Features	: half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt lpae evtstrm aes pmull sha1 sha2 crc32
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x2
+CPU part	: 0xd05
+CPU revision	: 0
+
+processor	: 3
+model name	: ARMv8 Processor rev 0 (v8l)
+BogoMIPS	: 48.00
+Features	: half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt lpae evtstrm aes pmull sha1 sha2 crc32
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x2
+CPU part	: 0xd05
+CPU revision	: 0
+
+Serial		: <redacted>
+Hardware	: Amlogic
+
+
+===== meminfo =====
+MemTotal:        2038488 kB
+MemFree:           88440 kB
+MemAvailable:     734276 kB
+
+===== storage =====
+cat: /proc/partitions: Permission denied
+(failed: cat /proc/partitions)
+
+===== wifi/bt (sdio ids) =====
+/sys/bus/sdio/devices/* vendor= device=
+
+===== usb devices =====
+(failed: for d in /sys/bus/usb/devices/*; do [ -f $d/idVendor ] && echo "$d $(cat $d/idVendor):$(cat $d/idProduct) $(cat $d/product 2>/dev/null)"; done)
+
+===== kernel modules =====
+mt7663_usb 1740800 0 - Live 0x0000000000000000 (O)
+btmtk_usb 151552 1 - Live 0x0000000000000000 (O)
+mt7663_usb_prealloc 20480 1 mt7663_usb, Live 0x0000000000000000 (O)
+media_sync 36864 0 - Live 0x0000000000000000 (O)
+amvdec_av1_v4l 184320 0 - Live 0x0000000000000000 (O)
+amvdec_av1 151552 0 - Live 0x0000000000000000 (O)
+amvdec_mavs 49152 0 - Live 0x0000000000000000 (O)
+amlogic_fbc_lib_64 40960 0 - Live 0x0000000000000000 (PO)
+amvdec_ports 180224 0 - Live 0x0000000000000000 (O)
+vpu 49152 0 - Live 0x0000000000000000 (O)
+encoder 61440 0 - Live 0x0000000000000000 (O)
+amvdec_avs2 212992 0 - Live 0x0000000000000000 (O)
+amvdec_vp9_v4l 126976 0 - Live 0x0000000000000000 (O)
+amvdec_vp9 135168 0 - Live 0x0000000000000000 (O)
+amvdec_vc1 77824 0 - Live 0x0000000000000000 (O)
+amvdec_mmpeg4_v4l 45056 0 - Live 0x0000000000000000 (O)
+amvdec_mmpeg4 45056 0 - Live 0x0000000000000000 (O)
+amvdec_mmpeg12_v4l 53248 0 - Live 0x0000000000000000 (O)
+amvdec_mmpeg12 53248 0 - Live 0x0000000000000000 (O)
+amvdec_mmjpeg_v4l 32768 0 - Live 0x0000000000000000 (O)
+amvdec_mmjpeg 32768 0 - Live 0x0000000000000000 (O)
+amvdec_h265_v4l 270336 0 - Live 0x0000000000000000 (O)
+amvdec_h265 139264 0 - Live 0x0000000000000000 (O)
+amvdec_h264mvc 61440 0 - Live 0x0000000000000000 (O)
+amvdec_mh264_v4l 167936 0 - Live 0x0000000000000000 (O)
+amvdec_mh264 167936 0 - Live 0x0000000000000000 (O)
+dvb_demux 208896 0 - Live 0x0000000000000000 (O)
+dovi 942080 0 - Live 0x0000000000000000 (PO)
+mali_kbase 430080 15 - Live 0x0000000000000000 (O)
+stream_input 176128 14 amvdec_av1_v4l,amvdec_av1,amvdec_mavs,amvdec_ports,amvdec_avs2,amvdec_vp9_v4l,amvdec_vp9,amvdec_mmpeg12_v4l,amvdec_mmpeg12,amvdec_h265_v4l,amvdec_h265,amvdec_h264mvc,amvdec_mh264_v4l,amvdec_mh264, Live 0x0000000000000000 (O)
+decoder_common 262144 21 amvdec_av1_v4l,amvdec_av1,amvdec_mavs,amlogic_fbc_lib_64,amvdec_ports,amvdec_avs2,amvdec_vp9_v4l,amvdec_vp9,amvdec_vc1,amvdec_mmpeg4_v4l,amvdec_mmpeg4,amvdec_mmpeg12_v4l,amvdec_mmpeg12,amvdec_mmjpeg_v4l,amvdec_mmjpeg,amvdec_h265_v4l,amvdec_h265,amvdec_h264mvc,amvdec_mh264_v4l,amvdec_mh264,stream_input, Live 0x0000000000000000 (O)
+video_framerate_adapter 20480 1 decoder_common, Live 0x0000000000000000 (O)
+firmware 28672 21 amvdec_av1_v4l,amvdec_av1,amvdec_mavs,encoder,amvdec_avs2,amvdec_vp9_v4l,amvdec_vp9,amvdec_vc1,amvdec_mmpeg4_v4l,amvdec_mmpeg4,amvdec_mmpeg12_v4l,amvdec_mmpeg12,amvdec_mmjpeg_v4l,amvdec_mmjpeg,amvdec_h265_v4l,amvdec_h265,amvdec_h264mvc,amvdec_mh264_v4l,amvdec_mh264,stream_input,decoder_common, Live 0x0000000000000000 (O)
+media_clock 40960 21 amvdec_av1_v4l,amvdec_av1,amvdec_mavs,amvdec_ports,vpu,encoder,amvdec_avs2,amvdec_vp9_v4l,amvdec_vp9,amvdec_vc1,amvdec_mmpeg4_v4l,amvdec_mmpeg12_v4l,amvdec_mmjpeg_v4l,amvdec_mmjpeg,amvdec_h265_v4l,amvdec_h265,amvdec_mh264_v4l,amvdec_mh264,stream_input,decoder_common,firmware, Live 0x0000000000000000 (O)
+aml_chcon 20480 0 - Live 0x0000000000000000 (O)
+optee_armtz 32768 5 - Live 0x0000000000000000 (O)
+optee 61440 11 optee_armtz, Live 0x0000000000000000 (O)
+hdr10_tmo_alg_64 24576 0 - Live 0x0000000000000000 (PO)
+wlpm 20480 0 - Live 0x0000000000000000 (O)
+thermal 45056 1 mali_kbase, Live 0x0000000000000000 (O)
+snd_usb_audio 237568 0 - Live 0x0000000000000000
+snd_usbmidi_lib 40960 1 snd_usb_audio, Live 0x0000000000000000
+snd_hwdep 32768 1 snd_usb_audio, Live 0x0000000000000000
+rtc_meson_vrtc 20480 1 - Live 0x0000000000000000
+reg_access 24576 0 - Live 0x0000000000000000 (O)
+reboot 24576 0 - Live 0x0000000000000000 (O)
+meson_saradc 28672 0 - Live 0x0000000000000000
+meson_jtag 20480 0 - Live 0x0000000000000000 (O)
+meson_ir 49152 0 - Live 0x0000000000000000 (O)
+meson_gxbb_wdt 20480 0 - Live 0x0000000000000000
+meson_gxl 20480 0 - Live 0x0000000000000000
+meson_cpufreq 24576 0 - Live 0x0000000000000000 (O)
+meson_clk_debug 20480 0 [permanent], Live 0x0000000000000000 (O)
+leds_state 20480 0 - Live 0x0000000000000000 (O)
+leds_tlc59116 24576 0 - Live 0x0000000000000000 (O)
+hifidsp 49152 0 - Live 0x0000000000000000 (O)
+gpio_keypad 20480 0 - Live 0x0000000000000000 (O)
+exfat 102400 0 - Live 0x0000000000000000 (C)
+dwmac_meson8b 20480 0 - Live 0x0000000000000000
+dwmac_dwc_qos_eth 20480 0 - Live 0x0000000000000000
+stmmac_platform 24576 2 dwmac_meson8b,dwmac_dwc_qos_eth, Live 0x0000000000000000
+stmmac 188416 3 dwmac_meson8b,dwmac_dwc_qos_eth,stmmac_platform, Live 0x0000000000000000
+ptp 32768 1 stmmac, Live 0x0000000000000000
+pps_core 28672 1 ptp, Live 0x0000000000000000
+phylink 28672 1 stmmac, Live 0x0000000000000000
+dolby_fw 28672 0 - Live 0x0000000000000000 (O)
+audiodsp 20480 0 - Live 0x0000000000000000 (O)
+audio_data 24576 0 - Live 0x0000000000000000 (O)
+amlogic_amaudio 24576 0 - Live 0x0000000000000000 (O)
+aml_rng 20480 0 - Live 0x0000000000000000
+aml_mdio_g12a 20480 2 meson_gxl,dwmac_meson8b, Live 0x0000000000000000
+mdio_mux 20480 1 aml_mdio_g12a, Live 0x0000000000000000
+aml_irblaster 24576 0 - Live 0x0000000000000000 (O)
+aml_drm 167936 1 - Live 0x0000000000000000 (O)
+aml_ddr_tool 61440 0 - Live 0x0000000000000000 (O)
+aml_crypto_dma 86016 0 - Live 0x0000000000000000 (O)
+aml_aucpu 40960 1 dvb_demux, Live 0x0000000000000000 (O)
+adc_keypad 24576 0 - Live 0x0000000000000000 (O)
+ad82584f 28672 0 - Live 0x0000000000000000 (O)
+snd_soc_aml_t9015 28672 1 - Live 0x0000000000000000 (O)
+snd_soc 430080 15 snd_soc_aml_t9015, Live 0x0000000000000000 (O)
+snd_soc_dummy_codec 20480 1 - Live 0x0000000000000000 (O)
+aml_media 5783552 52 amvdec_av1_v4l,amvdec_av1,amvdec_mavs,amlogic_fbc_lib_64,amvdec_ports,vpu,encoder,amvdec_avs2,amvdec_vp9_v4l,amvdec_vp9,amvdec_vc1,amvdec_mmpeg4_v4l,amvdec_mmpeg4,amvdec_mmpeg12_v4l,amvdec_mmpeg12,amvdec_mmjpeg_v4l,amvdec_mmjpeg,amvdec_h265_v4l,amvdec_h265,amvdec_h264mvc,amvdec_mh264_v4l,amvdec_mh264,dvb_demux,dovi,stream_input,decoder_common,media_clock,hdr10_tmo_alg_64,amlogic_amaudio,aml_drm,snd_soc, Live 0x0000000000000000 (O)
+aml_dvb_extern 90112 2 dvb_demux,aml_media, Live 0x0000000000000000 (O)
+meson_clk_measure 28672 1 aml_media,[permanent], Live 0x0000000000000000
+snd_soc_notify 20480 2 snd_soc,aml_media, Live 0x0000000000000000 (O)
+aml_gki_tool 32768 1 aml_media, Live 0x0000000000000000 (O)
+aml_mailbox 53248 5 rtc_meson_vrtc,leds_state,hifidsp,adc_keypad,aml_media, Live 0x0000000000000000 (O)
+aml_i2c 24576 0 - Live 0x0000000000000000
+
+===== kernel =====
+Linux localhost 5.4.180-android12-9-g8fa3bb80016c-ab683 #1 repo:mitvos SMP PREEMPT Mon Feb 13 19:23:34 CST 2023 armv8l
+
+===== net interfaces =====
+ap0
+dummy0
+ip6_vti0
+ip6tnl0
+ip_vti0
+lo
+p2p0
+wlan0

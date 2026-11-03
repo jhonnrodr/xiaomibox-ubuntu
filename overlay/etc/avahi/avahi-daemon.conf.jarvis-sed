@@ -1,0 +1,2 @@
+s/^use-ipv6=yes$/use-ipv6=no/
+s/^#allow-interfaces=.*/allow-interfaces=wlan0/

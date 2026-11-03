@@ -1,0 +1,9 @@
+[Unit]
+Description=Write diagnostics to /boot/diag every 3 minutes
+
+[Timer]
+OnBootSec=90
+OnUnitActiveSec=180
+
+[Install]
+WantedBy=timers.target

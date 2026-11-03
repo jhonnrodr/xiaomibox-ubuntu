@@ -1,0 +1,20 @@
+#!/bin/bash
+# If wlan0 cannot be brought up (MT7663 firmware load failed at boot), power-cycle the chip
+# and restart wpa_supplicant. Retries a few times, logs to the journal.
+set -u
+readonly IFACE="wlan0"
+readonly MAX_TRIES=5
+readonly WAIT_S=5
+
+for try in $(seq 1 "${MAX_TRIES}"); do
+  if ip link set "${IFACE}" up 2>/dev/null; then
+    echo "${IFACE} up (try ${try})"
+    systemctl restart "wpa_supplicant@${IFACE}.service"
+    exit 0
+  fi
+  echo "${IFACE} failed to come up (try ${try}), power-cycling the chip"
+  systemctl restart jarvis-wifi-power.service
+  sleep $((WAIT_S * 3))
+done
+echo "giving up on ${IFACE} after ${MAX_TRIES} tries" >&2
+exit 1

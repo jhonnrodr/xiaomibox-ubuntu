@@ -1,0 +1,49 @@
+#!/bin/bash
+# Power-cycles the MT7663 WiFi/BT chip and keeps it powered (long-running service).
+# The chip's power enable is GPIOX_6 = line 56 of the SC2 periphs bank (verified on jaws).
+# Reloading mt7663u alone does not recover a hung chip ("Message ... timeout"): it needs power off.
+set -euo pipefail
+readonly LINE=56
+readonly OFF_S=2
+readonly ENUM_TIMEOUT_S=20
+readonly USB_VID="0e8d"
+readonly USB_PID="7663"
+readonly CONSUMER="jarvis-wifi-power"
+
+periphs_chip() { gpiodetect | awk '/\(87 lines\)/ {print $1; exit}'; }
+chip_enumerated() {
+  local d
+  for d in /sys/bus/usb/devices/*; do
+    [[ "$(cat "$d/idVendor" 2>/dev/null)" == "${USB_VID}" && "$(cat "$d/idProduct" 2>/dev/null)" == "${USB_PID}" ]] && return 0
+  done
+  return 1
+}
+
+CHIP="$(periphs_chip)"
+[[ -n "${CHIP}" ]] || { echo "SC2 periphs gpiochip (87 lines) not found" >&2; exit 1; }
+
+modprobe -r mt7663u 2>/dev/null || true
+
+echo "power off: ${CHIP} line ${LINE} for ${OFF_S}s"
+gpioset -c "${CHIP}" -C "${CONSUMER}" "${LINE}=0" &
+OFF_PID=$!
+sleep "${OFF_S}"
+kill "${OFF_PID}"
+wait "${OFF_PID}" 2>/dev/null || true
+
+echo "power on"
+gpioset -c "${CHIP}" -C "${CONSUMER}" "${LINE}=1" &
+HOLD_PID=$!
+
+for _ in $(seq 1 "${ENUM_TIMEOUT_S}"); do
+  chip_enumerated && break
+  sleep 1
+done
+if chip_enumerated; then
+  echo "USB ${USB_VID}:${USB_PID} enumerated, loading mt7663u"
+  modprobe mt7663u
+else
+  echo "USB ${USB_VID}:${USB_PID} did not enumerate within ${ENUM_TIMEOUT_S}s" >&2
+fi
+
+wait "${HOLD_PID}"

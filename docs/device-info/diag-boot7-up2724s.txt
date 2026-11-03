@@ -1,0 +1,526 @@
+
+===== uname =====
+Linux jarvis 6.18.59-meson64 #84 SMP PREEMPT Mon Oct 26 20:58:25 CET 2026 aarch64 GNU/Linux
+
+===== uptime =====
+ 23:47:54 up 45 min,  0 users,  load average: 0.00, 0.25, 1.12
+
+===== ip addr =====
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute 
+       valid_lft forever preferred_lft forever
+2: eth0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc mq state DOWN group default qlen 1000
+    link/ether 02:ad:32:01:ac:38 brd ff:ff:ff:ff:ff:ff
+    altname end0
+    altname enx02ad3201ac38
+4: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether 4c:31:2d:xx:xx:xx brd ff:ff:ff:ff:ff:ff
+    inet 10.128.196.93/24 metric 4096 brd 10.128.196.255 scope global dynamic wlan0
+       valid_lft 83833sec preferred_lft 83833sec
+    inet6 fdxx:xxxx:xxxx:xxxx:5f02:b6c0:ed64:94a2/64 scope global dynamic mngtmpaddr noprefixroute 
+       valid_lft 1786sec preferred_lft 1786sec
+    inet6 fe80::4e31:2dff:fexx:xxxx/64 scope link proto kernel_ll 
+       valid_lft forever preferred_lft forever
+
+===== ip route =====
+default via 10.128.196.1 dev wlan0 proto dhcp src 10.128.196.93 metric 4096 
+1.1.1.1 via 10.128.196.1 dev wlan0 proto dhcp src 10.128.196.93 metric 4096 
+8.8.8.8 via 10.128.196.1 dev wlan0 proto dhcp src 10.128.196.93 metric 4096 
+10.128.150.1 via 10.128.196.1 dev wlan0 proto dhcp src 10.128.196.93 metric 4096 
+10.128.196.0/24 dev wlan0 proto kernel scope link src 10.128.196.93 metric 4096 
+10.128.196.1 dev wlan0 proto dhcp scope link src 10.128.196.93 metric 4096 
+
+===== iw dev =====
+phy#1
+	Interface wlan0
+		ifindex 4
+		wdev 0x100000001
+		addr 4c:31:2d:xx:xx:xx
+		ssid <home-ssid>
+		type managed
+		channel 120 (5600 MHz), width: 40 MHz, center1: 5590 MHz
+		txpower 21.00 dBm
+		multicast TXQ:
+			qsz-byt	qsz-pkt	flows	drops	marks	overlmt	hashcol	tx-bytes	tx-packets
+			0	0	0	0	0	0	0	0		0
+Connected to AP-B (on wlan0)
+	SSID: <home-ssid>
+	freq: 5600.0
+	RX: 28055819 bytes (63082 packets)
+	TX: 990738 bytes (3720 packets)
+	signal: -52 dBm
+	rx bitrate: 400.0 MBit/s VHT-MCS 9 40MHz short GI VHT-NSS 2
+	tx bitrate: 400.0 MBit/s VHT-MCS 9 40MHz short GI VHT-NSS 2
+	bss flags: short-slot-time
+	dtim period: 1
+	beacon int: 100
+Power save: off
+
+===== rfkill =====
+phy1
+1
+
+===== usb devices =====
+/sys/bus/usb/devices/1-1 0e8d:7663 Wireless_Device driver=
+/sys/bus/usb/devices/1-2 0718:7722 USB Flash Drive driver=usb-storage
+/sys/bus/usb/devices/usb1 1d6b:0002 xHCI Host Controller driver=hub
+/sys/bus/usb/devices/usb2 1d6b:0003 xHCI Host Controller driver=hub
+
+===== modules mt76 =====
+mt7663u                16384  0
+mt7663_usb_sdio_common    12288  1 mt7663u
+mt76_usb               20480  1 mt7663u
+mt7615_common          90112  2 mt7663_usb_sdio_common,mt7663u
+mt76_connac_lib        57344  3 mt7663_usb_sdio_common,mt7663u,mt7615_common
+mt76                   81920  5 mt7663_usb_sdio_common,mt76_usb,mt7663u,mt7615_common,mt76_connac_lib
+mac80211              634880  5 mt76,mt7663_usb_sdio_common,mt7663u,mt7615_common,mt76_connac_lib
+cfg80211              417792  4 mt76,mac80211,mt7615_common,mt76_connac_lib
+
+===== gpio (debugfs) =====
+cat: /sys/kernel/debug/gpio: No such file or directory
+
+===== firmware files =====
+total 1412
+-rw-r--r-- 1 root root 335072 Nov  2 22:23 mt7663_n9_rebb.bin
+-rw-r--r-- 1 root root 441688 Nov  2 22:23 mt7663_n9_v3.bin
+-rw-r--r-- 1 root root 278558 Nov  2 22:23 mt7663pr2h.bin
+-rw-r--r-- 1 root root 209230 Nov  2 22:23 mt7663pr2h_rebb.bin
+-rw-r--r-- 1 root root 170990 Aug 16  2025 mt7668pr2h.bin
+
+===== dmesg wifi/usb =====
+[    0.000000] psci: PSCIv1.0 detected in firmware.
+[    0.000000] Kernel command line: root=/dev/sda2 rootfstype=ext4 rootwait rw console=tty0 no_console_suspend consoleblank=0 coherent_pool=2M net.ifnames=0 fsck.repair=yes fsck.mode=skip init_on_alloc=1 init_on_free=1 randomize_kstack_offset=on kfence.sample_interval=100 debugfs=off kfence.deferrable=1 usbcore.autosuspend=-1 watchdog.stop_on_reboot=0 pd_ignore_unused clk_ignore_unused
+[    0.094196] usbcore: registered new interface driver usbfs
+[    0.094245] usbcore: registered new interface driver hub
+[    0.094281] usbcore: registered new device driver usb
+[    0.193614] usbcore: registered new interface driver uas
+[    0.193663] usbcore: registered new interface driver usb-storage
+[    0.198792] usbcore: registered new interface driver usbhid
+[    0.198805] usbhid: USB HID core driver
+[    0.978111] dwc3-meson-g12a fe03a000.usb: Looking up vbus-supply from device node /soc/usb@fe03a000
+[    0.978132] dwc3-meson-g12a fe03a000.usb: Looking up vbus-supply property in node /soc/usb@fe03a000 failed
+[    0.978350] dwc3-meson-g12a fe03a000.usb: USB2 ports: 2
+[    0.978385] dwc3-meson-g12a fe03a000.usb: USB3 ports: 1
+[    0.981629] xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned bus number 1
+[    0.981985] xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned bus number 2
+[    0.982027] xhci-hcd xhci-hcd.1.auto: Host supports USB 3.0 SuperSpeed
+[    0.982232] usb usb1: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 6.18
+[    0.982291] usb usb1: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+[    0.982328] usb usb1: Product: xHCI Host Controller
+[    0.982354] usb usb1: Manufacturer: Linux 6.18.59-meson64 xhci-hcd
+[    0.982384] usb usb1: SerialNumber: xhci-hcd.1.auto
+[    0.982963] hub 1-0:1.0: USB hub found
+[    0.983410] usb usb2: We don't know the algorithms for LPM for this host, disabling LPM.
+[    0.983543] usb usb2: New USB device found, idVendor=1d6b, idProduct=0003, bcdDevice= 6.18
+[    0.983585] usb usb2: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+[    0.983635] usb usb2: Product: xHCI Host Controller
+[    0.983663] usb usb2: Manufacturer: Linux 6.18.59-meson64 xhci-hcd
+[    0.983693] usb usb2: SerialNumber: xhci-hcd.1.auto
+[    0.984030] hub 2-0:1.0: USB hub found
+[    1.232386] usb 1-2: new high-speed USB device number 2 using xhci-hcd
+[    1.766998] usb 1-2: New USB device found, idVendor=0718, idProduct=7722, bcdDevice= 1.10
+[    1.768129] usb 1-2: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[    1.769216] usb 1-2: Product: USB Flash Drive
+[    1.770279] usb 1-2: Manufacturer: Memorex
+[    1.771330] usb 1-2: SerialNumber: <usb-serial>
+[    1.773598] usb-storage 1-2:1.0: USB Mass Storage device detected
+[    1.775109] scsi host0: usb-storage 1-2:1.0
+[    2.791385] scsi 0:0:0:0: Direct-Access     Memorex  USB Flash Drive  PMAP PQ: 0 ANSI: 6
+[    5.870925] systemd[1]: Expecting device sys-subsystem-net-devices-wlan0.device - /sys/subsystem/net/devices/wlan0...
+[    6.089571] systemd[1]: systemd-hibernate-clear.service - Clear Stale Hibernate Storage Info skipped, unmet condition check ConditionPathExists=/sys/firmware/efi/efivars/HibernateLocation-8cf2644b-4b0b-428f-9387-6d876050dc67
+[    8.530215] cfg80211: Loading compiled-in X.509 certificates for regulatory database
+[   21.928408] usb 1-1: new high-speed USB device number 3 using xhci-hcd
+[   22.065778] usb 1-1: New USB device found, idVendor=0e8d, idProduct=7663, bcdDevice= 1.00
+[   22.065801] usb 1-1: New USB device strings: Mfr=5, Product=6, SerialNumber=7
+[   22.065807] usb 1-1: Product: Wireless_Device
+[   22.065813] usb 1-1: Manufacturer: MediaTek Inc.
+[   22.065819] usb 1-1: SerialNumber: 000000000
+[   23.117204] usb 1-1: reset high-speed USB device number 3 using xhci-hcd
+[   24.850146] ieee80211 phy0: Selected rate control algorithm 'minstrel_ht'
+[   24.850172] ieee80211 phy0: copying sband (band 1) due to VHT EXT NSS BW flag
+[   24.861054] usbcore: registered new interface driver mt7663u
+[   27.520128] mt7663u 1-1:1.2: HW/SW Version: 0x65326363, Build Time: 2006030247debug
+[   28.014176] mt7663u 1-1:1.2: N9 Firmware Version: 3.1.1, Build Time: 20200604161656
+[   28.014197] mt7663u 1-1:1.2: Region number: 0x4
+[   28.014204] mt7663u 1-1:1.2: Parsing tailer Region: 0
+[   28.034255] mt7663u 1-1:1.2: Region 0, override_addr = 0x00118000
+[   28.034278] mt7663u 1-1:1.2: Parsing tailer Region: 1
+[   28.038356] mt7663u 1-1:1.2: Parsing tailer Region: 2
+[   28.039525] mt7663u 1-1:1.2: Parsing tailer Region: 3
+[   28.041425] mt7663u 1-1:1.2: override_addr = 0x00118000, option = 3
+[   34.229680] wlan0: authenticate with AP-A (local address=4c:31:2d:xx:xx:xx)
+[   34.229703] wlan0: send auth to AP-A (try 1/3)
+[   34.232521] wlan0: authenticated
+[   34.236394] wlan0: associate with AP-A (try 1/3)
+[   34.243407] wlan0: RX AssocResp from AP-A (capab=0x1511 status=0 aid=12)
+[   34.613115] wlan0: associated
+[   34.621543] wlan0: Limiting TX power to 30 (30 - 0) dBm as advertised by AP-A
+[   45.093474] wlan0: deauthenticating from AP-A by local choice (Reason: 3=DEAUTH_LEAVING)
+[   48.181725] wlan0: authenticate with AP-A (local address=4c:31:2d:xx:xx:xx)
+[   48.181742] wlan0: send auth to AP-A (try 1/3)
+[   48.184533] wlan0: authenticated
+[   48.188413] wlan0: associate with AP-A (try 1/3)
+[   48.195197] wlan0: RX AssocResp from AP-A (capab=0x1511 status=0 aid=12)
+[   48.208769] wlan0: associated
+[   48.245929] wlan0: Limiting TX power to 30 (30 - 0) dBm as advertised by AP-A
+[  124.945662] wlan0: deauthenticating from AP-A by local choice (Reason: 3=DEAUTH_LEAVING)
+[  128.451157] wlan0: authenticate with AP-A (local address=4c:31:2d:xx:xx:xx)
+[  128.451176] wlan0: send auth to AP-A (try 1/3)
+[  128.454028] wlan0: authenticated
+[  128.460386] wlan0: associate with AP-A (try 1/3)
+[  128.467406] wlan0: RX AssocResp from AP-A (capab=0x1511 status=0 aid=12)
+[  128.479107] wlan0: associated
+[  128.522898] wlan0: Limiting TX power to 30 (30 - 0) dBm as advertised by AP-A
+[  131.590998] wlan0: deauthenticated from AP-A (Reason: 2=PREV_AUTH_NOT_VALID)
+[  144.739093] wlan0: authenticate with AP-A (local address=4c:31:2d:xx:xx:xx)
+[  144.739112] wlan0: send auth to AP-A (try 1/3)
+[  144.741911] wlan0: authenticated
+[  144.744388] wlan0: associate with AP-A (try 1/3)
+[  144.751446] wlan0: RX AssocResp from AP-A (capab=0x1511 status=0 aid=12)
+[  144.762021] wlan0: associated
+[  144.804630] wlan0: Limiting TX power to 30 (30 - 0) dBm as advertised by AP-A
+[  145.377006] wlan0: deauthenticating from AP-A by local choice (Reason: 3=DEAUTH_LEAVING)
+[  145.795523] usbcore: deregistering interface driver mt7663u
+[  146.036389] mt7663u 1-1:1.2: timed out waiting for pending tx
+[  146.196484] usb 1-1: USB disconnect, device number 3
+[  148.644394] usb 1-1: new high-speed USB device number 4 using xhci-hcd
+[  148.781685] usb 1-1: New USB device found, idVendor=0e8d, idProduct=7663, bcdDevice= 1.00
+[  148.781703] usb 1-1: New USB device strings: Mfr=5, Product=6, SerialNumber=7
+[  148.781709] usb 1-1: Product: Wireless_Device
+[  148.781715] usb 1-1: Manufacturer: MediaTek Inc.
+[  148.781721] usb 1-1: SerialNumber: 000000000
+[  149.557180] usb 1-1: reset high-speed USB device number 4 using xhci-hcd
+[  151.332263] ieee80211 phy1: Selected rate control algorithm 'minstrel_ht'
+[  151.332287] ieee80211 phy1: copying sband (band 1) due to VHT EXT NSS BW flag
+[  151.336699] usbcore: registered new interface driver mt7663u
+[  151.342094] mt7663u 1-1:1.2: HW/SW Version: 0x65326363, Build Time: 2006030247debug
+[  151.444297] mt7663u 1-1:1.2: N9 Firmware Version: 3.1.1, Build Time: 20200604161656
+[  151.444319] mt7663u 1-1:1.2: Region number: 0x4
+[  151.444326] mt7663u 1-1:1.2: Parsing tailer Region: 0
+[  151.461255] mt7663u 1-1:1.2: Region 0, override_addr = 0x00118000
+[  151.461278] mt7663u 1-1:1.2: Parsing tailer Region: 1
+[  151.514360] mt7663u 1-1:1.2: Parsing tailer Region: 2
+[  151.589901] mt7663u 1-1:1.2: Parsing tailer Region: 3
+[  151.651139] mt7663u 1-1:1.2: override_addr = 0x00118000, option = 3
+[  156.140193] wlan0: authenticate with AP-B (local address=4c:31:2d:xx:xx:xx)
+[  156.140210] wlan0: send auth to AP-B (try 1/3)
+[  156.143031] wlan0: authenticated
+[  156.144402] wlan0: associate with AP-B (try 1/3)
+[  156.151290] wlan0: RX AssocResp from AP-B (capab=0x1511 status=0 aid=6)
+[  156.520991] wlan0: associated
+[  156.595769] wlan0: Limiting TX power to 30 (30 - 0) dBm as advertised by AP-B
+
+===== wifi watchdog =====
+Nov 02 23:04:34 jarvis jarvis-wifi-watchdog[722]: gateway unreachable: Connected to AP-A (on wlan0)         SSID: <home-ssid>         freq: 5500.0
+Nov 02 23:04:34 jarvis jarvis-wifi-watchdog[722]: step 1: restart wpa_supplicant@wlan0
+Nov 02 23:04:55 jarvis jarvis-wifi-watchdog[722]: step 2: power-cycle the chip
+Nov 02 23:05:32 jarvis jarvis-wifi-watchdog[722]: recovered after power cycle
+
+===== wifi power =====
+Oct 26 21:38:34 jarvis systemd[1]: Started jarvis-wifi-power.service - Power-cycle and hold power on the MT7663 WiFi chip (GPIOX_6).
+Oct 26 21:38:34 jarvis jarvis-wifi-power[365]: power off: gpiochip0 line 56 for 2s
+Oct 26 21:38:36 jarvis jarvis-wifi-power[365]: power on
+Oct 26 21:38:38 jarvis jarvis-wifi-power[365]: USB 0e8d:7663 enumerated, loading mt7663u
+Nov 02 23:04:55 jarvis systemd[1]: Stopping jarvis-wifi-power.service - Power-cycle and hold power on the MT7663 WiFi chip (GPIOX_6)...
+Nov 02 23:04:55 jarvis systemd[1]: jarvis-wifi-power.service: Deactivated successfully.
+Nov 02 23:04:55 jarvis systemd[1]: Stopped jarvis-wifi-power.service - Power-cycle and hold power on the MT7663 WiFi chip (GPIOX_6).
+Nov 02 23:04:55 jarvis systemd[1]: Started jarvis-wifi-power.service - Power-cycle and hold power on the MT7663 WiFi chip (GPIOX_6).
+Nov 02 23:04:56 jarvis jarvis-wifi-power[745]: power off: gpiochip0 line 56 for 2s
+Nov 02 23:04:58 jarvis jarvis-wifi-power[745]: power on
+Nov 02 23:04:59 jarvis jarvis-wifi-power[745]: USB 0e8d:7663 enumerated, loading mt7663u
+	line  56:	unnamed         	output consumer="jarvis-wifi-power"
+
+===== wifi retry =====
+Oct 26 21:38:34 jarvis systemd[1]: Starting jarvis-wifi-retry.service - Power-cycle MT7663 until wlan0 comes up...
+Nov 02 23:03:14 jarvis jarvis-wifi-retry[523]: wlan0 up (try 1)
+Nov 02 23:03:15 jarvis systemd[1]: jarvis-wifi-retry.service: Deactivated successfully.
+Nov 02 23:03:15 jarvis systemd[1]: Finished jarvis-wifi-retry.service - Power-cycle MT7663 until wlan0 comes up.
+
+===== wpa_supplicant =====
+● wpa_supplicant@wlan0.service - WPA supplicant daemon (for interface wlan0)
+     Loaded: loaded (/usr/lib/systemd/system/wpa_supplicant@.service; enabled; preset: enabled)
+     Active: active (running) since Mon 2026-11-02 23:05:01 CET; 42min ago
+ Invocation: 95f9408796f447e9a9a951a3c3e515a5
+   Main PID: 794 (wpa_supplicant)
+      Tasks: 1 (limit: 2087)
+     Memory: 1.9M (peak: 2.4M)
+        CPU: 89ms
+     CGroup: /system.slice/system-wpa_supplicant.slice/wpa_supplicant@wlan0.service
+             └─794 /usr/sbin/wpa_supplicant -c/etc/wpa_supplicant/wpa_supplicant-wlan0.conf -iwlan0
+
+Nov 02 23:05:01 jarvis systemd[1]: Started wpa_supplicant@wlan0.service - WPA supplicant daemon (for interface wlan0).
+Nov 02 23:05:01 jarvis wpa_supplicant[794]: Successfully initialized wpa_supplicant
+Nov 02 23:05:06 jarvis wpa_supplicant[794]: wlan0: SME: Trying to authenticate with AP-B (SSID='<home-ssid>' freq=5600 MHz)
+Nov 02 23:05:06 jarvis wpa_supplicant[794]: wlan0: Trying to associate with AP-B (SSID='<home-ssid>' freq=5600 MHz)
+Nov 02 23:05:06 jarvis wpa_supplicant[794]: wlan0: Associated with AP-B
+Nov 02 23:05:06 jarvis wpa_supplicant[794]: wlan0: CTRL-EVENT-SUBNET-STATUS-UPDATE status=0
+Nov 02 23:05:06 jarvis wpa_supplicant[794]: wlan0: CTRL-EVENT-REGDOM-CHANGE init=COUNTRY_IE type=COUNTRY alpha2=US
+Nov 02 23:05:07 jarvis wpa_supplicant[794]: wlan0: WPA: Key negotiation completed with AP-B [PTK=CCMP GTK=CCMP]
+Nov 02 23:05:07 jarvis wpa_supplicant[794]: wlan0: CTRL-EVENT-CONNECTED - Connection to AP-B completed [id=0 id_str=]
+Nov 02 23:03:15 jarvis systemd[1]: Stopped wpa_supplicant@wlan0.service - WPA supplicant daemon (for interface wlan0).
+Nov 02 23:03:15 jarvis systemd[1]: Started wpa_supplicant@wlan0.service - WPA supplicant daemon (for interface wlan0).
+Nov 02 23:03:15 jarvis wpa_supplicant[528]: Successfully initialized wpa_supplicant
+Nov 02 23:03:18 jarvis wpa_supplicant[528]: wlan0: SME: Trying to authenticate with AP-A (SSID='<home-ssid>' freq=5500 MHz)
+Nov 02 23:03:18 jarvis wpa_supplicant[528]: wlan0: Trying to associate with AP-A (SSID='<home-ssid>' freq=5500 MHz)
+Nov 02 23:03:18 jarvis wpa_supplicant[528]: wlan0: Associated with AP-A
+Nov 02 23:03:18 jarvis wpa_supplicant[528]: wlan0: CTRL-EVENT-SUBNET-STATUS-UPDATE status=0
+Nov 02 23:03:18 jarvis wpa_supplicant[528]: wlan0: CTRL-EVENT-REGDOM-CHANGE init=COUNTRY_IE type=COUNTRY alpha2=US
+Nov 02 23:03:18 jarvis wpa_supplicant[528]: wlan0: WPA: Key negotiation completed with AP-A [PTK=CCMP GTK=CCMP]
+Nov 02 23:03:18 jarvis wpa_supplicant[528]: wlan0: CTRL-EVENT-CONNECTED - Connection to AP-A completed [id=0 id_str=]
+Nov 02 23:04:34 jarvis systemd[1]: Stopping wpa_supplicant@wlan0.service - WPA supplicant daemon (for interface wlan0)...
+Nov 02 23:04:35 jarvis wpa_supplicant[528]: nl80211: send_event_marker failed: Source based routing not supported
+Nov 02 23:04:35 jarvis wpa_supplicant[528]: wlan0: CTRL-EVENT-DISCONNECTED bssid=AP-A reason=3 locally_generated=1
+Nov 02 23:04:35 jarvis wpa_supplicant[528]: wlan0: CTRL-EVENT-DSCP-POLICY clear_all
+Nov 02 23:04:35 jarvis wpa_supplicant[528]: wlan0: CTRL-EVENT-DSCP-POLICY clear_all
+Nov 02 23:04:35 jarvis wpa_supplicant[528]: nl80211: deinit ifname=wlan0 disabled_11b_rates=0
+Nov 02 23:04:35 jarvis wpa_supplicant[528]: wlan0: CTRL-EVENT-TERMINATING
+Nov 02 23:04:35 jarvis systemd[1]: wpa_supplicant@wlan0.service: Deactivated successfully.
+Nov 02 23:04:35 jarvis systemd[1]: Stopped wpa_supplicant@wlan0.service - WPA supplicant daemon (for interface wlan0).
+Nov 02 23:04:35 jarvis systemd[1]: Started wpa_supplicant@wlan0.service - WPA supplicant daemon (for interface wlan0).
+Nov 02 23:04:35 jarvis wpa_supplicant[734]: Successfully initialized wpa_supplicant
+Nov 02 23:04:38 jarvis wpa_supplicant[734]: wlan0: SME: Trying to authenticate with AP-A (SSID='<home-ssid>' freq=5500 MHz)
+Nov 02 23:04:38 jarvis wpa_supplicant[734]: wlan0: Trying to associate with AP-A (SSID='<home-ssid>' freq=5500 MHz)
+Nov 02 23:04:38 jarvis wpa_supplicant[734]: wlan0: Associated with AP-A
+Nov 02 23:04:38 jarvis wpa_supplicant[734]: wlan0: CTRL-EVENT-SUBNET-STATUS-UPDATE status=0
+Nov 02 23:04:38 jarvis wpa_supplicant[734]: wlan0: CTRL-EVENT-REGDOM-CHANGE init=COUNTRY_IE type=COUNTRY alpha2=US
+Nov 02 23:04:41 jarvis wpa_supplicant[734]: wlan0: CTRL-EVENT-DISCONNECTED bssid=AP-A reason=2
+Nov 02 23:04:41 jarvis wpa_supplicant[734]: wlan0: WPA: 4-Way Handshake failed - pre-shared key may be incorrect
+Nov 02 23:04:41 jarvis wpa_supplicant[734]: wlan0: CTRL-EVENT-SSID-TEMP-DISABLED id=0 ssid="<home-ssid>" auth_failures=1 duration=10 reason=WRONG_KEY
+Nov 02 23:04:41 jarvis wpa_supplicant[734]: wlan0: Added BSSID AP-A into ignore list, ignoring for 10 seconds
+Nov 02 23:04:41 jarvis wpa_supplicant[734]: wlan0: BSSID AP-A ignore list count incremented to 2, ignoring for 10 seconds
+Nov 02 23:04:41 jarvis wpa_supplicant[734]: wlan0: CTRL-EVENT-REGDOM-CHANGE init=CORE type=WORLD
+Nov 02 23:04:41 jarvis wpa_supplicant[734]: wlan0: CTRL-EVENT-REGDOM-CHANGE init=USER type=COUNTRY alpha2=US
+Nov 02 23:04:54 jarvis wpa_supplicant[734]: wlan0: CTRL-EVENT-SSID-REENABLED id=0 ssid="<home-ssid>"
+Nov 02 23:04:54 jarvis wpa_supplicant[734]: wlan0: SME: Trying to authenticate with AP-A (SSID='<home-ssid>' freq=5500 MHz)
+Nov 02 23:04:54 jarvis wpa_supplicant[734]: wlan0: Trying to associate with AP-A (SSID='<home-ssid>' freq=5500 MHz)
+Nov 02 23:04:54 jarvis wpa_supplicant[734]: wlan0: Associated with AP-A
+Nov 02 23:04:54 jarvis wpa_supplicant[734]: wlan0: CTRL-EVENT-SUBNET-STATUS-UPDATE status=0
+Nov 02 23:04:54 jarvis wpa_supplicant[734]: wlan0: CTRL-EVENT-REGDOM-CHANGE init=COUNTRY_IE type=COUNTRY alpha2=US
+Nov 02 23:04:55 jarvis systemd[1]: Stopping wpa_supplicant@wlan0.service - WPA supplicant daemon (for interface wlan0)...
+Nov 02 23:04:55 jarvis wpa_supplicant[734]: nl80211: send_event_marker failed: Source based routing not supported
+Nov 02 23:04:55 jarvis wpa_supplicant[734]: wlan0: CTRL-EVENT-DISCONNECTED bssid=AP-A reason=3 locally_generated=1
+Nov 02 23:04:55 jarvis wpa_supplicant[734]: wlan0: WPA: 4-Way Handshake failed - pre-shared key may be incorrect
+Nov 02 23:04:55 jarvis wpa_supplicant[734]: wlan0: CTRL-EVENT-SSID-TEMP-DISABLED id=0 ssid="<home-ssid>" auth_failures=2 duration=24 reason=WRONG_KEY
+Nov 02 23:04:55 jarvis wpa_supplicant[734]: wlan0: CTRL-EVENT-DSCP-POLICY clear_all
+Nov 02 23:04:55 jarvis wpa_supplicant[734]: wlan0: Removed BSSID AP-A from ignore list (clear)
+Nov 02 23:04:55 jarvis wpa_supplicant[734]: wlan0: CTRL-EVENT-DSCP-POLICY clear_all
+Nov 02 23:04:55 jarvis wpa_supplicant[734]: nl80211: deinit ifname=wlan0 disabled_11b_rates=0
+Nov 02 23:04:55 jarvis wpa_supplicant[734]: wlan0: CTRL-EVENT-TERMINATING
+Nov 02 23:04:55 jarvis systemd[1]: wpa_supplicant@wlan0.service: Deactivated successfully.
+Nov 02 23:04:55 jarvis systemd[1]: Stopped wpa_supplicant@wlan0.service - WPA supplicant daemon (for interface wlan0).
+Nov 02 23:05:01 jarvis systemd[1]: Started wpa_supplicant@wlan0.service - WPA supplicant daemon (for interface wlan0).
+Nov 02 23:05:01 jarvis wpa_supplicant[794]: Successfully initialized wpa_supplicant
+Nov 02 23:05:06 jarvis wpa_supplicant[794]: wlan0: SME: Trying to authenticate with AP-B (SSID='<home-ssid>' freq=5600 MHz)
+Nov 02 23:05:06 jarvis wpa_supplicant[794]: wlan0: Trying to associate with AP-B (SSID='<home-ssid>' freq=5600 MHz)
+Nov 02 23:05:06 jarvis wpa_supplicant[794]: wlan0: Associated with AP-B
+Nov 02 23:05:06 jarvis wpa_supplicant[794]: wlan0: CTRL-EVENT-SUBNET-STATUS-UPDATE status=0
+Nov 02 23:05:06 jarvis wpa_supplicant[794]: wlan0: CTRL-EVENT-REGDOM-CHANGE init=COUNTRY_IE type=COUNTRY alpha2=US
+Nov 02 23:05:07 jarvis wpa_supplicant[794]: wlan0: WPA: Key negotiation completed with AP-B [PTK=CCMP GTK=CCMP]
+Nov 02 23:05:07 jarvis wpa_supplicant[794]: wlan0: CTRL-EVENT-CONNECTED - Connection to AP-B completed [id=0 id_str=]
+
+===== networkd =====
+IDX LINK  TYPE     OPERATIONAL SETUP
+  1 lo    loopback carrier     unmanaged
+  2 eth0  ether    no-carrier  configuring
+  4 wlan0 wlan     routable    configured
+
+3 links listed.
+Oct 26 21:38:23 jarvis systemd[1]: Starting systemd-networkd.service - Network Management...
+Oct 26 21:38:24 jarvis systemd-networkd[242]: lo: Link UP
+Oct 26 21:38:24 jarvis systemd-networkd[242]: lo: Gained carrier
+Oct 26 21:38:24 jarvis systemd-networkd[242]: Unable to load sysctl monitor BPF program, ignoring: No such process
+Oct 26 21:38:24 jarvis systemd[1]: Started systemd-networkd.service - Network Management.
+Oct 26 21:38:24 jarvis systemd-networkd[242]: eth0: Found matching .network file, based on potentially unpredictable interface name: /etc/systemd/network/10-eth0.network
+Oct 26 21:38:24 jarvis systemd-networkd[242]: eth0: Configuring with /etc/systemd/network/10-eth0.network.
+Oct 26 21:38:24 jarvis systemd-networkd[242]: eth0: Found matching .network file, based on potentially unpredictable interface name: /etc/systemd/network/10-eth0.network
+Oct 26 21:38:24 jarvis systemd-networkd[242]: eth0: Link UP
+Oct 26 21:38:40 jarvis systemd-networkd[242]: wlan0: Found matching .network file, based on potentially unpredictable interface name: /etc/systemd/network/20-wlan0.network
+Oct 26 21:38:40 jarvis systemd-networkd[242]: wlan0: Configuring with /etc/systemd/network/20-wlan0.network.
+Oct 26 21:38:44 jarvis systemd-networkd[242]: wlan0: Link UP
+Oct 26 21:38:49 jarvis systemd-networkd[242]: wlan0: Connected WiFi access point: <home-ssid> (AP-A)
+Oct 26 21:38:50 jarvis systemd-networkd[242]: wlan0: Gained carrier
+Oct 26 21:38:50 jarvis systemd-networkd[242]: wlan0: Found matching .network file, based on potentially unpredictable interface name: /etc/systemd/network/20-wlan0.network
+Oct 26 21:38:51 jarvis systemd-networkd[242]: wlan0: DHCPv4 address 10.128.196.93/24, gateway 10.128.196.1 acquired from 10.128.196.1
+Nov 02 23:03:07 jarvis systemd-networkd[242]: wlan0: Gained IPv6LL
+Nov 02 23:03:14 jarvis systemd-networkd[242]: wlan0: Lost carrier
+Nov 02 23:03:18 jarvis systemd-networkd[242]: wlan0: Connected WiFi access point: <home-ssid> (AP-A)
+Nov 02 23:03:18 jarvis systemd-networkd[242]: wlan0: Gained carrier
+Nov 02 23:03:18 jarvis systemd-networkd[242]: wlan0: Found matching .network file, based on potentially unpredictable interface name: /etc/systemd/network/20-wlan0.network
+Nov 02 23:04:34 jarvis systemd-networkd[242]: wlan0: Lost carrier
+Nov 02 23:04:38 jarvis systemd-networkd[242]: wlan0: Connected WiFi access point: <home-ssid> (AP-A)
+Nov 02 23:04:39 jarvis systemd-networkd[242]: wlan0: DHCP lease lost
+Nov 02 23:04:54 jarvis systemd-networkd[242]: wlan0: Connected WiFi access point: <home-ssid> (AP-A)
+Nov 02 23:04:55 jarvis systemd-networkd[242]: wlan0: Gained carrier
+Nov 02 23:04:55 jarvis systemd-networkd[242]: wlan0: Found matching .network file, based on potentially unpredictable interface name: /etc/systemd/network/20-wlan0.network
+Nov 02 23:04:55 jarvis systemd-networkd[242]: wlan0: Reconfiguring with /etc/systemd/network/20-wlan0.network.
+Nov 02 23:04:55 jarvis systemd-networkd[242]: wlan0: Lost carrier
+Nov 02 23:04:55 jarvis systemd-networkd[242]: wlan0: Link DOWN
+Nov 02 23:04:55 jarvis systemd-networkd[242]: wlan0: Lost IPv6LL address fe80::4e31:2dff:fexx:xxxx.
+Nov 02 23:05:01 jarvis systemd-networkd[242]: wlan0: Found matching .network file, based on potentially unpredictable interface name: /etc/systemd/network/20-wlan0.network
+Nov 02 23:05:01 jarvis systemd-networkd[242]: wlan0: Configuring with /etc/systemd/network/20-wlan0.network.
+Nov 02 23:05:03 jarvis systemd-networkd[242]: wlan0: Link UP
+Nov 02 23:05:06 jarvis systemd-networkd[242]: wlan0: Connected WiFi access point: <home-ssid> (AP-B)
+Nov 02 23:05:07 jarvis systemd-networkd[242]: wlan0: Gained carrier
+Nov 02 23:05:07 jarvis systemd-networkd[242]: wlan0: Found matching .network file, based on potentially unpredictable interface name: /etc/systemd/network/20-wlan0.network
+Nov 02 23:05:07 jarvis systemd-networkd[242]: wlan0: DHCPv4 address 10.128.196.93/24, gateway 10.128.196.1 acquired from 10.128.196.1
+Nov 02 23:05:08 jarvis systemd-networkd[242]: wlan0: Gained IPv6LL
+
+===== failed units =====
+  UNIT LOAD ACTIVE SUB DESCRIPTION
+
+0 loaded units listed.
+
+===== dmesg tail =====
+[    6.189073] systemd[1]: Starting systemd-tmpfiles-setup-dev-early.service - Create Static Device Nodes in /dev gracefully...
+[    6.199996] systemd[1]: Finished systemd-modules-load.service - Load Kernel Modules.
+[    6.208261] systemd[1]: Starting systemd-sysctl.service - Apply Kernel Variables...
+[    6.218090] fuse: init (API version 7.45)
+[    6.223249] systemd[1]: modprobe@fuse.service: Deactivated successfully.
+[    6.228955] systemd[1]: Finished modprobe@fuse.service - Load Kernel Module fuse.
+[    6.240292] systemd[1]: Mounting sys-fs-fuse-connections.mount - FUSE Control File System...
+[    6.247674] systemd[1]: Finished systemd-network-generator.service - Generate Network Units from Kernel Command Line.
+[    6.254736] systemd[1]: Reached target network-pre.target - Preparation for Network.
+[    6.260656] systemd[1]: Listening on systemd-networkd-resolve-hook.socket - Network Management Resolve Hook Socket.
+[    6.279161] systemd[1]: Mounted sys-fs-fuse-connections.mount - FUSE Control File System.
+[    6.351869] systemd[1]: Finished systemd-udev-load-credentials.service - Load udev Rules from Credentials.
+[    6.471717] systemd[1]: Finished systemd-sysctl.service - Apply Kernel Variables.
+[    6.518187] systemd[1]: Finished keyboard-setup.service - Set the console keyboard layout.
+[    6.531662] systemd[1]: Finished systemd-tmpfiles-setup-dev-early.service - Create Static Device Nodes in /dev gracefully.
+[    6.701814] systemd[1]: fake-hwclock-load.service: Deactivated successfully.
+[    6.702630] systemd[1]: Finished fake-hwclock-load.service - Restore the current clock.
+[    6.705906] systemd[1]: systemd-fsck-root.service - File System Check on Root Device skipped, unmet condition check ConditionPathIsReadWrite=!/
+[    6.709550] systemd[1]: Starting systemd-remount-fs.service - Remount Root and Kernel File Systems...
+[    6.851730] systemd[1]: Finished boot-run-once.service - boot-run-once scripts.
+[    6.964422] systemd[1]: Finished systemd-udev-trigger.service - Coldplug All udev Devices.
+[    6.976411] EXT4-fs (sda2): re-mounted 0d8238ad-c47e-4273-bb39-daee33ac201e.
+[    6.979947] systemd[1]: Finished systemd-remount-fs.service - Remount Root and Kernel File Systems.
+[    6.987319] systemd[1]: systemd-hwdb-update.service - Rebuild Hardware Database skipped, no trigger condition checks were met.
+[    6.987546] systemd[1]: systemd-pstore.service - Platform Persistent Storage Archival skipped, unmet condition check ConditionDirectoryNotEmpty=/sys/fs/pstore
+[    6.990974] systemd[1]: Starting systemd-random-seed.service - Load/Save OS Random Seed...
+[    6.997265] systemd[1]: Starting systemd-sysusers.service - Create System Users...
+[    7.095340] systemd[1]: Finished systemd-random-seed.service - Load/Save OS Random Seed.
+[    7.102277] systemd[1]: Finished systemd-sysusers.service - Create System Users.
+[    7.111472] systemd[1]: Starting systemd-journalctl.socket - Journal Log Access Socket...
+[    7.138259] systemd[1]: Starting systemd-resolved.service - Network Name Resolution...
+[    7.146676] systemd[1]: Starting systemd-timesyncd.service - Network Time Synchronization...
+[    7.152819] systemd[1]: Starting systemd-tmpfiles-setup-dev.service - Create Static Device Nodes in /dev...
+[    7.160054] systemd[1]: Listening on systemd-journalctl.socket - Journal Log Access Socket.
+[    7.207608] systemd[1]: Finished systemd-tmpfiles-setup-dev.service - Create Static Device Nodes in /dev.
+[    7.212172] systemd[1]: Reached target local-fs-pre.target - Preparation for Local File Systems.
+[    7.218041] systemd[1]: Mounting tmp.mount - /tmp...
+[    7.225118] systemd[1]: Starting systemd-udevd.service - Rule-based Manager for Device Events and Files...
+[    7.276134] systemd[1]: Mounted tmp.mount - /tmp.
+[    7.278792] systemd[1]: Reached target local-fs.target - Local File Systems.
+[    7.284968] systemd[1]: Listening on systemd-sysext.socket - System Extension Image Management.
+[    7.291313] systemd[1]: Starting boot-run-once-early.service - boot-run-once-early scripts...
+[    7.297527] systemd[1]: Starting console-setup.service - Set console font and keymap...
+[    7.308836] systemd[1]: systemd-binfmt.service - Set Up Additional Binary Formats skipped, no trigger condition checks were met.
+[    7.309543] systemd[1]: systemd-confext.service - Merge System Configuration Images into /etc/ skipped, no trigger condition checks were met.
+[    7.310211] systemd[1]: systemd-sysext.service - Merge System Extension Images into /usr/ and /opt/ skipped, no trigger condition checks were met.
+[    7.331936] systemd[1]: Starting zram-config.service - zram-config...
+[    7.347064] systemd[1]: Started systemd-timesyncd.service - Network Time Synchronization.
+[    7.351909] systemd[1]: Reached target time-set.target - System Time Set.
+[    7.406911] systemd[1]: Finished console-setup.service - Set console font and keymap.
+[    7.487170] systemd[1]: zram-config.service: Skipped due to 'exec-condition'.
+[    7.488083] systemd[1]: Condition check resulted in zram-config.service - zram-config being skipped.
+[    7.496492] systemd[1]: Starting systemd-journald.service - Journal Service...
+[    7.643734] systemd-journald[202]: Collecting audit messages is enabled.
+[    7.745403] systemd[1]: Started systemd-resolved.service - Network Name Resolution.
+[    7.747974] systemd[1]: Reached target nss-lookup.target - Host and Network Name Lookups.
+[    7.750340] systemd[1]: Started systemd-journald.service - Journal Service.
+[    7.943484] systemd-journald[202]: Received client request to flush runtime journal.
+[    8.530215] cfg80211: Loading compiled-in X.509 certificates for regulatory database
+[    8.544238] Loaded X.509 cert 'sforshee: 00b28ddf47aef9cea7'
+[    8.544840] Loaded X.509 cert 'wens: 61c038651aabdcf94bd0ac7ff06c7248db18c600'
+[    9.097622] meson8b-dwmac fdc00000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
+[    9.157113] meson8b-dwmac fdc00000.ethernet eth0: PHY [mdio_mux-0.1:08] driver [Meson G12A Internal PHY] (irq=24)
+[    9.164440] meson8b-dwmac fdc00000.ethernet eth0: No Safety Features support found
+[    9.167601] meson8b-dwmac fdc00000.ethernet eth0: PTP not supported by HW
+[    9.167624] meson8b-dwmac fdc00000.ethernet eth0: configuring for phy/rmii link mode
+[   11.635551] EXT4-fs (sda2): resizing filesystem from 188160 to 30198784 blocks
+[   16.703145] EXT4-fs (sda2): resized filesystem to 30198784
+[   21.928408] usb 1-1: new high-speed USB device number 3 using xhci-hcd
+[   22.065778] usb 1-1: New USB device found, idVendor=0e8d, idProduct=7663, bcdDevice= 1.00
+[   22.065801] usb 1-1: New USB device strings: Mfr=5, Product=6, SerialNumber=7
+[   22.065807] usb 1-1: Product: Wireless_Device
+[   22.065813] usb 1-1: Manufacturer: MediaTek Inc.
+[   22.065819] usb 1-1: SerialNumber: 000000000
+[   23.117204] usb 1-1: reset high-speed USB device number 3 using xhci-hcd
+[   24.850146] ieee80211 phy0: Selected rate control algorithm 'minstrel_ht'
+[   24.850172] ieee80211 phy0: copying sband (band 1) due to VHT EXT NSS BW flag
+[   24.861054] usbcore: registered new interface driver mt7663u
+[   27.520128] mt7663u 1-1:1.2: HW/SW Version: 0x65326363, Build Time: 2006030247debug
+
+[   28.014176] mt7663u 1-1:1.2: N9 Firmware Version: 3.1.1, Build Time: 20200604161656
+[   28.014197] mt7663u 1-1:1.2: Region number: 0x4
+[   28.014204] mt7663u 1-1:1.2: Parsing tailer Region: 0
+[   28.034255] mt7663u 1-1:1.2: Region 0, override_addr = 0x00118000
+[   28.034278] mt7663u 1-1:1.2: Parsing tailer Region: 1
+[   28.038356] mt7663u 1-1:1.2: Parsing tailer Region: 2
+[   28.039525] mt7663u 1-1:1.2: Parsing tailer Region: 3
+[   28.041425] mt7663u 1-1:1.2: override_addr = 0x00118000, option = 3
+[   34.229680] wlan0: authenticate with AP-A (local address=4c:31:2d:xx:xx:xx)
+[   34.229703] wlan0: send auth to AP-A (try 1/3)
+[   34.232521] wlan0: authenticated
+[   34.236394] wlan0: associate with AP-A (try 1/3)
+[   34.243407] wlan0: RX AssocResp from AP-A (capab=0x1511 status=0 aid=12)
+[   34.613115] wlan0: associated
+[   34.621543] wlan0: Limiting TX power to 30 (30 - 0) dBm as advertised by AP-A
+[   45.093474] wlan0: deauthenticating from AP-A by local choice (Reason: 3=DEAUTH_LEAVING)
+[   48.181725] wlan0: authenticate with AP-A (local address=4c:31:2d:xx:xx:xx)
+[   48.181742] wlan0: send auth to AP-A (try 1/3)
+[   48.184533] wlan0: authenticated
+[   48.188413] wlan0: associate with AP-A (try 1/3)
+[   48.195197] wlan0: RX AssocResp from AP-A (capab=0x1511 status=0 aid=12)
+[   48.208769] wlan0: associated
+[   48.245929] wlan0: Limiting TX power to 30 (30 - 0) dBm as advertised by AP-A
+[  124.945662] wlan0: deauthenticating from AP-A by local choice (Reason: 3=DEAUTH_LEAVING)
+[  128.451157] wlan0: authenticate with AP-A (local address=4c:31:2d:xx:xx:xx)
+[  128.451176] wlan0: send auth to AP-A (try 1/3)
+[  128.454028] wlan0: authenticated
+[  128.460386] wlan0: associate with AP-A (try 1/3)
+[  128.467406] wlan0: RX AssocResp from AP-A (capab=0x1511 status=0 aid=12)
+[  128.479107] wlan0: associated
+[  128.522898] wlan0: Limiting TX power to 30 (30 - 0) dBm as advertised by AP-A
+[  131.590998] wlan0: deauthenticated from AP-A (Reason: 2=PREV_AUTH_NOT_VALID)
+[  144.739093] wlan0: authenticate with AP-A (local address=4c:31:2d:xx:xx:xx)
+[  144.739112] wlan0: send auth to AP-A (try 1/3)
+[  144.741911] wlan0: authenticated
+[  144.744388] wlan0: associate with AP-A (try 1/3)
+[  144.751446] wlan0: RX AssocResp from AP-A (capab=0x1511 status=0 aid=12)
+[  144.762021] wlan0: associated
+[  144.804630] wlan0: Limiting TX power to 30 (30 - 0) dBm as advertised by AP-A
+[  145.377006] wlan0: deauthenticating from AP-A by local choice (Reason: 3=DEAUTH_LEAVING)
+[  145.795523] usbcore: deregistering interface driver mt7663u
+[  146.036389] mt7663u 1-1:1.2: timed out waiting for pending tx
+[  146.196484] usb 1-1: USB disconnect, device number 3
+[  148.644394] usb 1-1: new high-speed USB device number 4 using xhci-hcd
+[  148.781685] usb 1-1: New USB device found, idVendor=0e8d, idProduct=7663, bcdDevice= 1.00
+[  148.781703] usb 1-1: New USB device strings: Mfr=5, Product=6, SerialNumber=7
+[  148.781709] usb 1-1: Product: Wireless_Device
+[  148.781715] usb 1-1: Manufacturer: MediaTek Inc.
+[  148.781721] usb 1-1: SerialNumber: 000000000
+[  149.557180] usb 1-1: reset high-speed USB device number 4 using xhci-hcd
+[  151.332263] ieee80211 phy1: Selected rate control algorithm 'minstrel_ht'
+[  151.332287] ieee80211 phy1: copying sband (band 1) due to VHT EXT NSS BW flag
+[  151.336699] usbcore: registered new interface driver mt7663u
+[  151.342094] mt7663u 1-1:1.2: HW/SW Version: 0x65326363, Build Time: 2006030247debug
+
+[  151.444297] mt7663u 1-1:1.2: N9 Firmware Version: 3.1.1, Build Time: 20200604161656
+[  151.444319] mt7663u 1-1:1.2: Region number: 0x4
+[  151.444326] mt7663u 1-1:1.2: Parsing tailer Region: 0
+[  151.461255] mt7663u 1-1:1.2: Region 0, override_addr = 0x00118000
+[  151.461278] mt7663u 1-1:1.2: Parsing tailer Region: 1
+[  151.514360] mt7663u 1-1:1.2: Parsing tailer Region: 2
+[  151.589901] mt7663u 1-1:1.2: Parsing tailer Region: 3
+[  151.651139] mt7663u 1-1:1.2: override_addr = 0x00118000, option = 3
+[  156.140193] wlan0: authenticate with AP-B (local address=4c:31:2d:xx:xx:xx)
+[  156.140210] wlan0: send auth to AP-B (try 1/3)
+[  156.143031] wlan0: authenticated
+[  156.144402] wlan0: associate with AP-B (try 1/3)
+[  156.151290] wlan0: RX AssocResp from AP-B (capab=0x1511 status=0 aid=6)
+[  156.520991] wlan0: associated
+[  156.595769] wlan0: Limiting TX power to 30 (30 - 0) dBm as advertised by AP-B

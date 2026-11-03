@@ -1,0 +1,12 @@
+.env
+*.env
+.DS_Store
+*.img
+*.img.xz
+*.img.gz
+backups/
+**/graphify-out/
+images/
+firmware/
+!.env.example
+packages/
